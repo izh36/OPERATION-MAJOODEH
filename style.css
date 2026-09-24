@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPERATION: MAJOODEH</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         CLASSIFIED INTRO
+    ========================== -->
+
+    <main id="classified-screen" class="screen active">
+
+        <div class="scanline"></div>
+
+        <div class="classified-container">
+
+            <div class="top-secret">
+                // CLASSIFIED // CLASSIFIED // CLASSIFIED
+            </div>
+
+            <div class="file-number">
+                FILE #M-001
+            </div>
+
+            <div class="classified-stamp">
+                CLASSIFIED
+            </div>
+
+            <div class="agent-info">
+
+                <p class="label">AGENT DESIGNATION</p>
+                <h1>MAJOODEH</h1>
+
+                <div class="divider"></div>
+
+                <p class="label">CLEARANCE LEVEL</p>
+                <div class="clearance-big">0%</div>
+
+                <p class="status">
+                    STATUS: <span>AWAITING AGENT</span>
+                </p>
+
+            </div>
+
+            <div class="mission-text">
+
+                <p>AN UNAUTHORIZED ARCHIVE HAS BEEN DISCOVERED.</p>
+
+                <p>
+                    ONLY ONE AGENT HAS THE REQUIRED ACCESS.
+                </p>
+
+                <p class="warning">
+                    WARNING: MISSION CONTENT MAY CONTAIN
+                    CLASSIFIED MEMORIES.
+                </p>
+
+            </div>
+
+            <button id="accept-btn">
+                ACCEPT MISSION
+            </button>
+
+            <button id="decline-btn">
+                DECLINE
+            </button>
+
+            <div class="system-message" id="system-message">
+                SYSTEM AWAITING RESPONSE...
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         SECRET PHONE
+    ========================== -->
+
+    <main id="phone-screen" class="screen">
+
+        <div class="phone">
+
+            <div class="phone-speaker"></div>
+
+            <div class="phone-status">
+                <span>9:41</span>
+                <span>▮▮▮ ◉</span>
+            </div>
+
+            <div class="phone-header">
+
+                <div>
+                    <p class="phone-small">AGENT DEVICE</p>
+                    <h2>MAJOODEH</h2>
+                </div>
+
+                <div class="clearance">
+                    <span>CLEARANCE</span>
+                    <strong id="clearance-value">0%</strong>
+                </div>
+
+            </div>
+
+
+            <div class="mission-banner">
+
+                <span class="online-dot"></span>
+
+                <div>
+                    <strong>OPERATION ACTIVE</strong>
+                    <small>Archive access granted</small>
+                </div>
+
+            </div>
+
+
+            <!-- APP GRID -->
+
+            <section class="app-grid">
+
+                <button class="app" data-app="messages">
+                    <span class="app-icon messages-icon">💬</span>
+                    <span>Messages</span>
+                </button>
+
+                <button class="app" data-app="memories">
+                    <span class="app-icon">🧠</span>
+                    <span>Memories</span>
+                </button>
+
+                <button class="app" data-app="objects">
+                    <span class="app-icon">🧸</span>
+                    <span>Objects</span>
+                </button>
+
+                <button class="app" data-app="plans">
+                    <span class="app-icon">🗺️</span>
+                    <span>Plans</span>
+                </button>
+
+                <button class="app" data-app="objectives">
+                    <span class="app-icon">🎯</span>
+                    <span>Objectives</span>
+                </button>
+
+                <button class="app locked" data-app="final">
+                    <span class="app-icon">🔒</span>
+                    <span>???</span>
+                </button>
+
+            </section>
+
+
+            <!-- HOME FOOTER -->
+
+            <div class="phone-footer">
+
+                <div class="footer-status">
+                    <span class="online-dot"></span>
+                    SECURE CONNECTION
+                </div>
+
+                <div class="footer-time">
+                    ARCHIVE // M-001
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
