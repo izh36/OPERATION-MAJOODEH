@@ -799,3 +799,117 @@ button {
         padding: 32px 20px 25px;
     }
 }
+/* ================================
+   PHONE VISIBILITY FIX
+================================ */
+
+#phone-screen {
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+#phone-screen.active {
+  display: flex;
+}
+
+.phone {
+  position: relative;
+  display: block;
+  width: min(390px, 94vw);
+  height: min(844px, 94vh);
+  min-height: 650px;
+  overflow: hidden;
+}
+
+.phone-view {
+  display: none;
+}
+
+.phone-view.active {
+  display: block;
+}
+
+#home-view.active {
+  display: block;
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 110px;
+  cursor: pointer;
+}
+
+.app-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+.phone-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.phone-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.clearance-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.operation-banner {
+  display: flex;
+  justify-content: space-between;
+}
+
+.view-header {
+  display: flex;
+  align-items: center;
+}
+
+.archive-list,
+.objective-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.archive-item {
+  width: 100%;
+  cursor: pointer;
+}
+
+.objective-card,
+.object-card,
+.plan-card {
+  width: 100%;
+}
+
+.back-btn {
+  cursor: pointer;
+}
+
+.detail-content {
+  overflow-y: auto;
+}
+
+.home-indicator {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
