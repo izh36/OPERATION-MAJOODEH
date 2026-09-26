@@ -312,21 +312,71 @@
 
         <div class="objective-list">
 
-          <div class="objective-card">
+          <section id="objectives-view" class="view">
+    <div class="view-header">
+        <button class="back-btn" onclick="showView('home-view')">←</button>
+        <div>
+            <div class="eyebrow">MISSION CONTROL</div>
+            <h2>Objectives</h2>
+        </div>
+    </div>
+
+    <div class="archive-list">
+
+        <div class="objective-card objective-active" id="objective-1-card" onclick="openObjective(1)">
             <span>#001</span>
             <strong>RECOVER</strong>
-          </div>
+            <small id="objective-1-status">AVAILABLE</small>
+        </div>
 
-          <div class="objective-card">
+        <div class="objective-card objective-locked" id="objective-2-card">
             <span>#002</span>
             <strong>CONNECT</strong>
-          </div>
+            <small id="objective-2-status">LOCKED</small>
+        </div>
 
-          <div class="objective-card">
+        <div class="objective-card objective-locked" id="objective-3-card">
             <span>#003</span>
             <strong>RECONSTRUCT</strong>
-          </div>
+            <small id="objective-3-status">LOCKED</small>
+        </div>
 
+    </div>
+</section>
+<section id="objective-detail-view" class="view">
+    <div class="view-header">
+        <button class="back-btn" onclick="showView('objectives-view')">←</button>
+        <div>
+            <div class="eyebrow">CLASSIFIED OBJECTIVE</div>
+            <h2 id="objective-detail-title">OBJECTIVE #001</h2>
+        </div>
+    </div>
+
+    <div class="classified-detail">
+
+        <div class="detail-code">RECOVER</div>
+
+        <p id="objective-detail-text">
+            Four authentication markers have been embedded
+            inside the archive.
+        </p>
+
+        <p>
+            Locate all four markers to verify archive access.
+        </p>
+
+        <button id="activate-objective-btn"
+                class="mission-btn"
+                onclick="activateObjective1()">
+            ACTIVATE OBJECTIVE
+        </button>
+
+        <div id="objective-progress">
+            0 / 4 MARKERS RECOVERED
+        </div>
+
+    </div>
+</section>
         </div>
 
       </div>
