@@ -1,198 +1,295 @@
-/* =====================================================
-   SCREEN ELEMENTS
-===================================================== */
+```javascript
+// ================================
+// DATA
+// ================================
+
+const messages = {
+  1: {
+    title: "#001 DEBRECEN",
+    content: "Us two waking up ridiculously early, train ride to Debrecen, thesis defense."
+  },
+
+  2: {
+    title: "#002 NYUGATI",
+    content: "The enormous table from Nyugati and Semsem carrying it home."
+  },
+
+  3: {
+    title: "#003 NAIL TECHNICIAN",
+    content: 'Semsem becoming Majoodehs "professional" nail technician for approximately milyoon sa3a.'
+  },
+
+  4: {
+    title: "#004 HUNGARY",
+    content: "arriving Hungary and directly becoming friends."
+  }
+};
+
+
+const memories = {
+  1: {
+    title: "MEMORY #001",
+    content: "The neighbor's cat attacking Majoodeh."
+  },
+
+  2: {
+    title: "MEMORY #002",
+    content: "The baby pigeon at Leonardo and you making me go outside with it."
+  },
+
+  3: {
+    title: "MEMORY #003",
+    content: "Going for new years walk and talking pics in front of the minion and telephone booth."
+  },
+
+  4: {
+    title: "MEMORY #004",
+    content: "Your Holland transit when we enjoyed our time together."
+  }
+};
+
+
+// ================================
+// SCREEN ELEMENTS
+// ================================
 
 const classifiedScreen = document.getElementById("classified-screen");
 const phoneScreen = document.getElementById("phone-screen");
 
-const acceptButton = document.getElementById("accept-btn");
-const declineButton = document.getElementById("decline-btn");
+const acceptBtn = document.getElementById("accept-btn");
+const declineBtn = document.getElementById("decline-btn");
 
-const terminalResponse =
-    document.getElementById("terminal-response");
+const terminalResponse = document.getElementById("terminal-response");
 
 
-/* =====================================================
-   ACCEPT MISSION
-===================================================== */
+// ================================
+// ACCEPT MISSION
+// ================================
 
-acceptButton.addEventListener("click", () => {
+acceptBtn.addEventListener("click", () => {
 
-    acceptButton.disabled = true;
-    declineButton.disabled = true;
+  acceptBtn.disabled = true;
+  declineBtn.disabled = true;
 
-    terminalResponse.textContent = "AUTHENTICATING AGENT...";
+  const messages = [
+    "AUTHENTICATING AGENT...",
+    "IDENTITY VERIFIED.",
+    "CLEARANCE GRANTED.",
+    "OPENING SECURE DEVICE..."
+  ];
 
-    setTimeout(() => {
-        terminalResponse.textContent =
-            "IDENTITY VERIFIED.";
-    }, 700);
+  let index = 0;
 
-    setTimeout(() => {
-        terminalResponse.textContent =
-            "CLEARANCE GRANTED.";
-    }, 1400);
+  function nextMessage() {
 
-    setTimeout(() => {
-        terminalResponse.textContent =
-            "OPENING SECURE DEVICE...";
-    }, 1900);
+    if (index >= messages.length) {
 
-    setTimeout(() => {
-
+      setTimeout(() => {
         classifiedScreen.classList.remove("active");
         phoneScreen.classList.add("active");
+        startClock();
+      }, 700);
 
-    }, 2500);
+      return;
+    }
 
+    terminalResponse.textContent = messages[index];
+
+    index++;
+
+    setTimeout(nextMessage, 800);
+  }
+
+  nextMessage();
 });
 
 
-/* =====================================================
-   DECLINE
-===================================================== */
+// ================================
+// DECLINE
+// ================================
 
-declineButton.addEventListener("click", () => {
+declineBtn.addEventListener("click", () => {
 
-    terminalResponse.textContent =
-        "DECLINE REQUEST RECEIVED...";
+  terminalResponse.textContent = "DECLINE REQUEST RECEIVED...";
 
-    setTimeout(() => {
+  setTimeout(() => {
+    terminalResponse.textContent = "REQUEST DENIED.";
+  }, 800);
 
-        terminalResponse.textContent =
-            "REQUEST DENIED.";
-
-    }, 900);
-
-    setTimeout(() => {
-
-        terminalResponse.textContent =
-            "NICE TRY.";
-
-    }, 1600);
-
+  setTimeout(() => {
+    terminalResponse.textContent = "NICE TRY.";
+  }, 1600);
 });
 
 
-/* =====================================================
-   PHONE NAVIGATION
-===================================================== */
+// ================================
+// REAL PHONE CLOCK
+// ================================
 
-const apps = document.querySelectorAll(".app[data-view]");
-const views = document.querySelectorAll(".phone-view");
+function updateClock() {
+
+  const now = new Date();
+
+  let hours = now.getHours();
+  let minutes = now.getMinutes();
+
+  hours = String(hours).padStart(2, "0");
+  minutes = String(minutes).padStart(2, "0");
+
+  document.getElementById("phone-time").textContent =
+    `${hours}:${minutes}`;
+}
+
+
+function startClock() {
+
+  updateClock();
+
+  setInterval(updateClock, 1000);
+}
+
+
+// ================================
+// PHONE NAVIGATION
+// ================================
+
+const apps = document.querySelectorAll(".app");
 
 apps.forEach(app => {
 
-    app.addEventListener("click", () => {
+  app.addEventListener("click", () => {
 
-        const target = app.dataset.view;
+    const target = app.dataset.view;
 
-        openView(target);
+    if (target === "final-view") {
 
-    });
+      showSystemAlert(
+        "FINAL FILE LOCKED",
+        "COMPLETE ALL OBJECTIVES"
+      );
+
+      return;
+    }
+
+    openView(target);
+  });
 
 });
 
 
-function openView(viewName) {
+function openView(viewId) {
 
-    views.forEach(view => {
-        view.classList.remove("active-view");
-    });
+  document.querySelectorAll(".phone-view").forEach(view => {
+    view.classList.remove("active");
+  });
 
-    const targetView =
-        document.getElementById(`${viewName}-view`);
-
-    if (targetView) {
-        targetView.classList.add("active-view");
-    }
-
+  document.getElementById(viewId).classList.add("active");
 }
 
 
-/* =====================================================
-   BACK BUTTONS
-===================================================== */
+// ================================
+// BACK BUTTONS
+// ================================
 
-const backButtons =
-    document.querySelectorAll(".back-btn");
+document.querySelectorAll(".back-btn").forEach(button => {
 
-backButtons.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        views.forEach(view => {
-            view.classList.remove("active-view");
-        });
-
-        document
-            .getElementById("home-view")
-            .classList.add("active-view");
-
-    });
+  button.addEventListener("click", () => {
+    openView("home-view");
+  });
 
 });
 
 
-/* =====================================================
-   LOCKED FINAL FILE
-===================================================== */
+document.getElementById("detail-back").addEventListener("click", () => {
+  openView("home-view");
+});
 
-const finalApp =
-    document.getElementById("final-app");
 
-finalApp.addEventListener("click", () => {
+// ================================
+// MESSAGE DETAILS
+// ================================
 
-    if (finalApp.classList.contains("locked")) {
+document.querySelectorAll(".message-item").forEach(item => {
 
-        terminalAlert(
-            "FINAL FILE LOCKED // COMPLETE ALL OBJECTIVES"
-        );
+  item.addEventListener("click", () => {
 
-    }
+    const id = item.dataset.message;
+    const message = messages[id];
+
+    document.getElementById("detail-title").textContent =
+      message.title;
+
+    document.getElementById("detail-content").innerHTML = `
+      <div class="classified-detail">
+        <span>MESSAGE RECORD</span>
+        <div class="detail-number">${message.title}</div>
+        <p>${message.content}</p>
+      </div>
+    `;
+
+    openView("detail-view");
+  });
 
 });
 
 
-/* =====================================================
-   TEMPORARY SYSTEM ALERT
-===================================================== */
+// ================================
+// MEMORY DETAILS
+// ================================
 
-function terminalAlert(message) {
+document.querySelectorAll(".memory-item").forEach(item => {
 
-    const alertBox = document.createElement("div");
+  item.addEventListener("click", () => {
 
-    alertBox.textContent = message;
+    const id = item.dataset.memory;
+    const memory = memories[id];
 
-    alertBox.style.position = "fixed";
-    alertBox.style.left = "50%";
-    alertBox.style.bottom = "35px";
-    alertBox.style.transform = "translateX(-50%)";
+    document.getElementById("detail-title").textContent =
+      memory.title;
 
-    alertBox.style.width = "min(340px, 85%)";
+    document.getElementById("detail-content").innerHTML = `
+      <div class="classified-detail">
+        <span>MEMORY RECORD</span>
+        <div class="detail-number">${memory.title}</div>
+        <p>${memory.content}</p>
+      </div>
+    `;
 
-    alertBox.style.padding = "14px";
+    openView("detail-view");
+  });
 
-    alertBox.style.background = "#111611";
-    alertBox.style.border = "1px solid #59645b";
+});
 
-    alertBox.style.color = "#c6cec8";
 
-    alertBox.style.fontFamily =
-        '"DM Mono", monospace';
+// ================================
+// SYSTEM ALERT
+// ================================
 
-    alertBox.style.fontSize = "8px";
-    alertBox.style.textAlign = "center";
-    alertBox.style.letterSpacing = "1px";
+function showSystemAlert(title, message) {
 
-    alertBox.style.zIndex = "9999";
+  const alert = document.createElement("div");
 
-    document.body.appendChild(alertBox);
+  alert.className = "system-alert";
+
+  alert.innerHTML = `
+    <strong>${title}</strong>
+    <span>${message}</span>
+  `;
+
+  document.body.appendChild(alert);
+
+  setTimeout(() => {
+    alert.classList.add("show");
+  }, 20);
+
+  setTimeout(() => {
+
+    alert.classList.remove("show");
 
     setTimeout(() => {
+      alert.remove();
+    }, 300);
 
-        alertBox.remove();
-
-    }, 2200);
-
+  }, 2200);
 }
+```
