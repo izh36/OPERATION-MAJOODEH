@@ -1,4 +1,3 @@
-```javascript
 // ================================
 // DATA
 // ================================
@@ -8,40 +7,33 @@ const messages = {
     title: "#001 DEBRECEN",
     content: "Us two waking up ridiculously early, train ride to Debrecen, thesis defense."
   },
-
   2: {
     title: "#002 NYUGATI",
     content: "The enormous table from Nyugati and Semsem carrying it home."
   },
-
   3: {
     title: "#003 NAIL TECHNICIAN",
     content: 'Semsem becoming Majoodehs "professional" nail technician for approximately milyoon sa3a.'
   },
-
   4: {
     title: "#004 HUNGARY",
     content: "arriving Hungary and directly becoming friends."
   }
 };
 
-
 const memories = {
   1: {
     title: "MEMORY #001",
     content: "The neighbor's cat attacking Majoodeh."
   },
-
   2: {
     title: "MEMORY #002",
     content: "The baby pigeon at Leonardo and you making me go outside with it."
   },
-
   3: {
     title: "MEMORY #003",
     content: "Going for new years walk and talking pics in front of the minion and telephone booth."
   },
-
   4: {
     title: "MEMORY #004",
     content: "Your Holland transit when we enjoyed our time together."
@@ -66,12 +58,12 @@ const terminalResponse = document.getElementById("terminal-response");
 // ACCEPT MISSION
 // ================================
 
-acceptBtn.addEventListener("click", () => {
+acceptBtn.addEventListener("click", function() {
 
   acceptBtn.disabled = true;
   declineBtn.disabled = true;
 
-  const messages = [
+  const sequence = [
     "AUTHENTICATING AGENT...",
     "IDENTITY VERIFIED.",
     "CLEARANCE GRANTED.",
@@ -82,9 +74,9 @@ acceptBtn.addEventListener("click", () => {
 
   function nextMessage() {
 
-    if (index >= messages.length) {
+    if (index >= sequence.length) {
 
-      setTimeout(() => {
+      setTimeout(function() {
         classifiedScreen.classList.remove("active");
         phoneScreen.classList.add("active");
         startClock();
@@ -93,7 +85,7 @@ acceptBtn.addEventListener("click", () => {
       return;
     }
 
-    terminalResponse.textContent = messages[index];
+    terminalResponse.textContent = sequence[index];
 
     index++;
 
@@ -108,15 +100,15 @@ acceptBtn.addEventListener("click", () => {
 // DECLINE
 // ================================
 
-declineBtn.addEventListener("click", () => {
+declineBtn.addEventListener("click", function() {
 
   terminalResponse.textContent = "DECLINE REQUEST RECEIVED...";
 
-  setTimeout(() => {
+  setTimeout(function() {
     terminalResponse.textContent = "REQUEST DENIED.";
   }, 800);
 
-  setTimeout(() => {
+  setTimeout(function() {
     terminalResponse.textContent = "NICE TRY.";
   }, 1600);
 });
@@ -130,14 +122,11 @@ function updateClock() {
 
   const now = new Date();
 
-  let hours = now.getHours();
-  let minutes = now.getMinutes();
-
-  hours = String(hours).padStart(2, "0");
-  minutes = String(minutes).padStart(2, "0");
+  let hours = String(now.getHours()).padStart(2, "0");
+  let minutes = String(now.getMinutes()).padStart(2, "0");
 
   document.getElementById("phone-time").textContent =
-    `${hours}:${minutes}`;
+    hours + ":" + minutes;
 }
 
 
@@ -155,9 +144,9 @@ function startClock() {
 
 const apps = document.querySelectorAll(".app");
 
-apps.forEach(app => {
+apps.forEach(function(app) {
 
-  app.addEventListener("click", () => {
+  app.addEventListener("click", function() {
 
     const target = app.dataset.view;
 
@@ -179,7 +168,7 @@ apps.forEach(app => {
 
 function openView(viewId) {
 
-  document.querySelectorAll(".phone-view").forEach(view => {
+  document.querySelectorAll(".phone-view").forEach(function(view) {
     view.classList.remove("active");
   });
 
@@ -191,16 +180,16 @@ function openView(viewId) {
 // BACK BUTTONS
 // ================================
 
-document.querySelectorAll(".back-btn").forEach(button => {
+document.querySelectorAll(".back-btn").forEach(function(button) {
 
-  button.addEventListener("click", () => {
+  button.addEventListener("click", function() {
     openView("home-view");
   });
 
 });
 
 
-document.getElementById("detail-back").addEventListener("click", () => {
+document.getElementById("detail-back").addEventListener("click", function() {
   openView("home-view");
 });
 
@@ -209,9 +198,9 @@ document.getElementById("detail-back").addEventListener("click", () => {
 // MESSAGE DETAILS
 // ================================
 
-document.querySelectorAll(".message-item").forEach(item => {
+document.querySelectorAll(".message-item").forEach(function(item) {
 
-  item.addEventListener("click", () => {
+  item.addEventListener("click", function() {
 
     const id = item.dataset.message;
     const message = messages[id];
@@ -219,13 +208,28 @@ document.querySelectorAll(".message-item").forEach(item => {
     document.getElementById("detail-title").textContent =
       message.title;
 
-    document.getElementById("detail-content").innerHTML = `
-      <div class="classified-detail">
-        <span>MESSAGE RECORD</span>
-        <div class="detail-number">${message.title}</div>
-        <p>${message.content}</p>
-      </div>
-    `;
+    const detailContent = document.getElementById("detail-content");
+
+    detailContent.innerHTML = "";
+
+    const box = document.createElement("div");
+    box.className = "classified-detail";
+
+    const label = document.createElement("span");
+    label.textContent = "MESSAGE RECORD";
+
+    const number = document.createElement("div");
+    number.className = "detail-number";
+    number.textContent = message.title;
+
+    const content = document.createElement("p");
+    content.textContent = message.content;
+
+    box.appendChild(label);
+    box.appendChild(number);
+    box.appendChild(content);
+
+    detailContent.appendChild(box);
 
     openView("detail-view");
   });
@@ -237,9 +241,9 @@ document.querySelectorAll(".message-item").forEach(item => {
 // MEMORY DETAILS
 // ================================
 
-document.querySelectorAll(".memory-item").forEach(item => {
+document.querySelectorAll(".memory-item").forEach(function(item) {
 
-  item.addEventListener("click", () => {
+  item.addEventListener("click", function() {
 
     const id = item.dataset.memory;
     const memory = memories[id];
@@ -247,13 +251,28 @@ document.querySelectorAll(".memory-item").forEach(item => {
     document.getElementById("detail-title").textContent =
       memory.title;
 
-    document.getElementById("detail-content").innerHTML = `
-      <div class="classified-detail">
-        <span>MEMORY RECORD</span>
-        <div class="detail-number">${memory.title}</div>
-        <p>${memory.content}</p>
-      </div>
-    `;
+    const detailContent = document.getElementById("detail-content");
+
+    detailContent.innerHTML = "";
+
+    const box = document.createElement("div");
+    box.className = "classified-detail";
+
+    const label = document.createElement("span");
+    label.textContent = "MEMORY RECORD";
+
+    const number = document.createElement("div");
+    number.className = "detail-number";
+    number.textContent = memory.title;
+
+    const content = document.createElement("p");
+    content.textContent = memory.content;
+
+    box.appendChild(label);
+    box.appendChild(number);
+    box.appendChild(content);
+
+    detailContent.appendChild(box);
 
     openView("detail-view");
   });
@@ -271,25 +290,28 @@ function showSystemAlert(title, message) {
 
   alert.className = "system-alert";
 
-  alert.innerHTML = `
-    <strong>${title}</strong>
-    <span>${message}</span>
-  `;
+  const titleElement = document.createElement("strong");
+  titleElement.textContent = title;
+
+  const messageElement = document.createElement("span");
+  messageElement.textContent = message;
+
+  alert.appendChild(titleElement);
+  alert.appendChild(messageElement);
 
   document.body.appendChild(alert);
 
-  setTimeout(() => {
+  setTimeout(function() {
     alert.classList.add("show");
   }, 20);
 
-  setTimeout(() => {
+  setTimeout(function() {
 
     alert.classList.remove("show");
 
-    setTimeout(() => {
+    setTimeout(function() {
       alert.remove();
     }, 300);
 
   }, 2200);
 }
-```
