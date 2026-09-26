@@ -3,182 +3,498 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050706">
     <title>OPERATION: MAJOODEH</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =========================
-         CLASSIFIED INTRO
-    ========================== -->
+<!-- =====================================================
+     CLASSIFIED INTRO
+===================================================== -->
 
-    <main id="classified-screen" class="screen active">
+<section id="classified-screen" class="screen active">
 
-        <div class="scanline"></div>
+    <div class="terminal-noise"></div>
+    <div class="scanlines"></div>
 
-        <div class="classified-container">
+    <div class="terminal">
 
-            <div class="top-secret">
-                // CLASSIFIED // CLASSIFIED // CLASSIFIED
-            </div>
+        <div class="terminal-top">
+            <span>SECURE TERMINAL</span>
+            <span>CONNECTION: ENCRYPTED</span>
+        </div>
 
-            <div class="file-number">
-                FILE #M-001
+        <div class="terminal-body">
+
+            <div class="terminal-code">
+                > INITIALIZING SECURE ARCHIVE...<br>
+                > CONNECTION ESTABLISHED.<br>
+                > SEARCHING FOR AUTHORIZED AGENT...
             </div>
 
             <div class="classified-stamp">
                 CLASSIFIED
             </div>
 
-            <div class="agent-info">
+            <div class="file-info">
 
-                <p class="label">AGENT DESIGNATION</p>
-                <h1>MAJOODEH</h1>
-
-                <div class="divider"></div>
-
-                <p class="label">CLEARANCE LEVEL</p>
-                <div class="clearance-big">0%</div>
-
-                <p class="status">
-                    STATUS: <span>AWAITING AGENT</span>
-                </p>
+                <p><span>FILE</span> M-001</p>
+                <p><span>SUBJECT</span> MAJOODEH</p>
+                <p><span>STATUS</span> RESTRICTED</p>
+                <p><span>CLEARANCE</span> <strong>0%</strong></p>
 
             </div>
 
-            <div class="mission-text">
+            <div class="terminal-divider"></div>
 
-                <p>AN UNAUTHORIZED ARCHIVE HAS BEEN DISCOVERED.</p>
-
-                <p>
-                    ONLY ONE AGENT HAS THE REQUIRED ACCESS.
-                </p>
-
-                <p class="warning">
-                    WARNING: MISSION CONTENT MAY CONTAIN
-                    CLASSIFIED MEMORIES.
-                </p>
-
+            <div class="terminal-warning">
+                UNAUTHORIZED PERSONNEL WILL BE
+                IMMEDIATELY REMOVED FROM THE SYSTEM.
             </div>
 
             <button id="accept-btn">
-                ACCEPT MISSION
+                <span>▶</span> ACCEPT MISSION
             </button>
 
             <button id="decline-btn">
                 DECLINE
             </button>
 
-            <div class="system-message" id="system-message">
-                SYSTEM AWAITING RESPONSE...
+            <div id="terminal-response">
+                AWAITING AGENT RESPONSE<span class="cursor">_</span>
             </div>
 
         </div>
 
-    </main>
+        <div class="terminal-bottom">
+            <span>SYS // M-001</span>
+            <span>© CLASSIFIED ARCHIVE</span>
+        </div>
+
+    </div>
+
+</section>
 
 
-    <!-- =========================
-         SECRET PHONE
-    ========================== -->
+<!-- =====================================================
+     PHONE
+===================================================== -->
 
-    <main id="phone-screen" class="screen">
+<section id="phone-screen" class="screen">
 
-        <div class="phone">
+    <div class="phone">
 
-            <div class="phone-speaker"></div>
+        <div class="dynamic-island"></div>
 
-            <div class="phone-status">
-                <span>9:41</span>
-                <span>▮▮▮ ◉</span>
-            </div>
+        <div class="phone-status">
+            <span>9:41</span>
+
+            <span class="phone-icons">
+                ▮▮▮　WiFi　●
+            </span>
+        </div>
+
+
+        <!-- HOME -->
+
+        <div id="home-view" class="phone-view active-view">
 
             <div class="phone-header">
 
                 <div>
-                    <p class="phone-small">AGENT DEVICE</p>
-                    <h2>MAJOODEH</h2>
+                    <small>SECURE DEVICE</small>
+                    <h1>MAJOODEH</h1>
                 </div>
 
-                <div class="clearance">
-                    <span>CLEARANCE</span>
+                <div class="clearance-display">
+                    <small>CLEARANCE</small>
                     <strong id="clearance-value">0%</strong>
                 </div>
 
             </div>
 
 
-            <div class="mission-banner">
+            <div class="mission-status">
 
-                <span class="online-dot"></span>
+                <div class="status-dot"></div>
 
                 <div>
                     <strong>OPERATION ACTIVE</strong>
-                    <small>Archive access granted</small>
+                    <span>Archive access granted</span>
                 </div>
+
+                <span class="status-lock">●</span>
 
             </div>
 
 
-            <!-- APP GRID -->
+            <div class="app-grid">
 
-            <section class="app-grid">
-
-                <button class="app" data-app="messages">
-                    <span class="app-icon messages-icon">💬</span>
+                <button class="app" data-view="messages">
+                    <span class="app-icon messages">💬</span>
                     <span>Messages</span>
                 </button>
 
-                <button class="app" data-app="memories">
-                    <span class="app-icon">🧠</span>
+                <button class="app" data-view="memories">
+                    <span class="app-icon memories">🧠</span>
                     <span>Memories</span>
                 </button>
 
-                <button class="app" data-app="objects">
-                    <span class="app-icon">🧸</span>
+                <button class="app" data-view="objects">
+                    <span class="app-icon objects">🧸</span>
                     <span>Objects</span>
                 </button>
 
-                <button class="app" data-app="plans">
-                    <span class="app-icon">🗺️</span>
+                <button class="app" data-view="plans">
+                    <span class="app-icon plans">🗺️</span>
                     <span>Plans</span>
                 </button>
 
-                <button class="app" data-app="objectives">
-                    <span class="app-icon">🎯</span>
+                <button class="app" data-view="objectives">
+                    <span class="app-icon objectives">🎯</span>
                     <span>Objectives</span>
                 </button>
 
-                <button class="app locked" data-app="final">
+                <button class="app locked" id="final-app">
                     <span class="app-icon">🔒</span>
                     <span>???</span>
                 </button>
 
-            </section>
+            </div>
 
 
-            <!-- HOME FOOTER -->
+            <div class="home-footer">
 
-            <div class="phone-footer">
-
-                <div class="footer-status">
-                    <span class="online-dot"></span>
+                <div>
+                    <span class="green-dot"></span>
                     SECURE CONNECTION
                 </div>
 
-                <div class="footer-time">
-                    ARCHIVE // M-001
+                <span>ARCHIVE M-001</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             MESSAGES
+        ================================================= -->
+
+        <div id="messages-view" class="phone-view">
+
+            <div class="app-header">
+
+                <button class="back-btn">‹</button>
+
+                <div>
+                    <small>ARCHIVED</small>
+                    <h2>MESSAGES</h2>
+                </div>
+
+            </div>
+
+            <div class="archive-label">
+                COMMUNICATION LOG // 004 RECORDS
+            </div>
+
+            <div class="message-list">
+
+                <button class="record">
+                    <div class="record-icon">001</div>
+                    <div>
+                        <strong>Debrecen</strong>
+                        <span>Ridiculously early...</span>
+                    </div>
+                    <b>›</b>
+                </button>
+
+                <button class="record">
+                    <div class="record-icon">002</div>
+                    <div>
+                        <strong>Nyugati</strong>
+                        <span>The enormous table...</span>
+                    </div>
+                    <b>›</b>
+                </button>
+
+                <button class="record">
+                    <div class="record-icon">003</div>
+                    <div>
+                        <strong>Nail Technician</strong>
+                        <span>Milyoon sa3a...</span>
+                    </div>
+                    <b>›</b>
+                </button>
+
+                <button class="record">
+                    <div class="record-icon">004</div>
+                    <div>
+                        <strong>Hungary</strong>
+                        <span>Arriving and becoming friends...</span>
+                    </div>
+                    <b>›</b>
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             MEMORIES
+        ================================================= -->
+
+        <div id="memories-view" class="phone-view">
+
+            <div class="app-header">
+
+                <button class="back-btn">‹</button>
+
+                <div>
+                    <small>ARCHIVE</small>
+                    <h2>MEMORIES</h2>
+                </div>
+
+            </div>
+
+            <div class="archive-label">
+                PERSONAL RECORDS // 004 FILES
+            </div>
+
+            <div class="memory-grid">
+
+                <button class="memory-card">
+                    <span>MEMORY 001</span>
+                    <strong>THE CAT INCIDENT</strong>
+                    <small>CLASSIFIED</small>
+                </button>
+
+                <button class="memory-card">
+                    <span>MEMORY 002</span>
+                    <strong>LEONARDO</strong>
+                    <small>CLASSIFIED</small>
+                </button>
+
+                <button class="memory-card">
+                    <span>MEMORY 003</span>
+                    <strong>NEW YEAR'S WALK</strong>
+                    <small>CLASSIFIED</small>
+                </button>
+
+                <button class="memory-card">
+                    <span>MEMORY 004</span>
+                    <strong>HOLLAND TRANSIT</strong>
+                    <small>CLASSIFIED</small>
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             OBJECTS
+        ================================================= -->
+
+        <div id="objects-view" class="phone-view">
+
+            <div class="app-header">
+
+                <button class="back-btn">‹</button>
+
+                <div>
+                    <small>PHYSICAL EVIDENCE</small>
+                    <h2>OBJECTS</h2>
+                </div>
+
+            </div>
+
+            <div class="object-card">
+
+                <div class="object-number">OBJECT 001</div>
+
+                <div class="object-emoji">🧘‍♂️</div>
+
+                <h3>MINIATURE JEDI</h3>
+
+                <div class="object-data">
+                    <p><span>ITEM</span> LEGO YODA</p>
+                    <p><span>TYPE</span> MINIATURE JEDI</p>
+                    <p><span>CONSTRUCTION</span> COMPLETE</p>
+                    <p><span>TEAM</span> 2 AGENTS</p>
+                </div>
+
+            </div>
+
+            <div class="object-card">
+
+                <div class="object-number">OBJECT 002</div>
+
+                <div class="object-emoji">🏺</div>
+
+                <h3>THE ASHTRAYS</h3>
+
+                <div class="object-data">
+                    <p><span>MATERIAL</span> FAST-DRYING CLAY</p>
+                    <p><span>QUALITY</span> DEBATABLE</p>
+                    <p><span>MEMORY VALUE</span> CLASSIFIED</p>
                 </div>
 
             </div>
 
         </div>
 
-    </main>
+
+        <!-- =================================================
+             PLANS
+        ================================================= -->
+
+        <div id="plans-view" class="phone-view">
+
+            <div class="app-header">
+
+                <button class="back-btn">‹</button>
+
+                <div>
+                    <small>FUTURE OPERATIONS</small>
+                    <h2>PLANS</h2>
+                </div>
+
+            </div>
+
+            <div class="plans-list">
+
+                <div class="operation">
+                    <span class="operation-number">01</span>
+                    <div>
+                        <strong>OPERATION: COFFEE</strong>
+                        <p>Objective: Coffee together.</p>
+                        <p>Frequency: Everyday.</p>
+                        <p>Difficulty: NA.</p>
+                    </div>
+                </div>
+
+                <div class="operation">
+                    <span class="operation-number">02</span>
+                    <div>
+                        <strong>OPERATION: SUNRISE</strong>
+                        <p>Wake up unnecessarily early.</p>
+                        <p>Get coffee.</p>
+                        <p>Find somewhere to sit.</p>
+                        <p>Watch the sunrise and pretend we're functional human beings before 8am.</p>
+                    </div>
+                </div>
+
+                <div class="operation">
+                    <span class="operation-number">03</span>
+                    <div>
+                        <strong>OPERATION: KITCHEN</strong>
+                        <p>Cook together.</p>
+                        <p>Probably fuck up the dish.</p>
+                        <p>Eat it anyway and act like it's deleeesh.</p>
+                    </div>
+                </div>
+
+                <div class="operation">
+                    <span class="operation-number">04</span>
+                    <div>
+                        <strong>OPERATION: FITNESS</strong>
+                        <p>Exercise together.</p>
+                        <p>Motivational level: Questionable.</p>
+                        <p>Post-op reward: either food or krumpli.</p>
+                    </div>
+                </div>
+
+                <div class="operation">
+                    <span class="operation-number">05</span>
+                    <div>
+                        <strong>OPERATION: RANDOM</strong>
+                        <p>Pick a random place. Go there.</p>
+                        <p>No planning. No expectations.</p>
+                        <p>See what happens.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
 
 
-    <script src="script.js"></script>
+        <!-- =================================================
+             OBJECTIVES
+        ================================================= -->
+
+        <div id="objectives-view" class="phone-view">
+
+            <div class="app-header">
+
+                <button class="back-btn">‹</button>
+
+                <div>
+                    <small>MISSION CONTROL</small>
+                    <h2>OBJECTIVES</h2>
+                </div>
+
+            </div>
+
+            <div class="objective-status">
+
+                <div class="big-clearance">
+                    <strong id="objective-clearance">0%</strong>
+                    <span>CLEARANCE</span>
+                </div>
+
+                <p>Complete all objectives to unlock the final file.</p>
+
+            </div>
+
+            <div class="objective-list">
+
+                <div class="objective locked-objective">
+                    <span>01</span>
+                    <div>
+                        <strong>RECOVER</strong>
+                        <small>Authentication markers</small>
+                    </div>
+                    <b>LOCKED</b>
+                </div>
+
+                <div class="objective locked-objective">
+                    <span>02</span>
+                    <div>
+                        <strong>CONNECT</strong>
+                        <small>Archive relationships</small>
+                    </div>
+                    <b>LOCKED</b>
+                </div>
+
+                <div class="objective locked-objective">
+                    <span>03</span>
+                    <div>
+                        <strong>RECONSTRUCT</strong>
+                        <small>Relationship timeline</small>
+                    </div>
+                    <b>LOCKED</b>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- BOTTOM HOME INDICATOR -->
+
+        <div class="home-indicator"></div>
+
+    </div>
+
+</section>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
