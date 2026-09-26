@@ -1,184 +1,801 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OPERATION: MAJOODEH</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Mono:wght@400;700&display=swap');
 
-<body>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    <!-- =========================
-         CLASSIFIED INTRO
-    ========================== -->
+:root {
+    --black: #050706;
+    --dark: #0b0f0c;
+    --panel: #101511;
+    --panel2: #141a15;
+    --border: #273029;
+    --text: #dce2dd;
+    --muted: #707a72;
+    --dim: #424a44;
+    --green: #9caf9e;
+}
 
-    <main id="classified-screen" class="screen active">
+body {
+    min-height: 100vh;
+    background: #020303;
+    color: var(--text);
+    font-family: "DM Mono", monospace;
+    overflow-x: hidden;
+}
 
-        <div class="scanline"></div>
-
-        <div class="classified-container">
-
-            <div class="top-secret">
-                // CLASSIFIED // CLASSIFIED // CLASSIFIED
-            </div>
-
-            <div class="file-number">
-                FILE #M-001
-            </div>
-
-            <div class="classified-stamp">
-                CLASSIFIED
-            </div>
-
-            <div class="agent-info">
-
-                <p class="label">AGENT DESIGNATION</p>
-                <h1>MAJOODEH</h1>
-
-                <div class="divider"></div>
-
-                <p class="label">CLEARANCE LEVEL</p>
-                <div class="clearance-big">0%</div>
-
-                <p class="status">
-                    STATUS: <span>AWAITING AGENT</span>
-                </p>
-
-            </div>
-
-            <div class="mission-text">
-
-                <p>AN UNAUTHORIZED ARCHIVE HAS BEEN DISCOVERED.</p>
-
-                <p>
-                    ONLY ONE AGENT HAS THE REQUIRED ACCESS.
-                </p>
-
-                <p class="warning">
-                    WARNING: MISSION CONTENT MAY CONTAIN
-                    CLASSIFIED MEMORIES.
-                </p>
-
-            </div>
-
-            <button id="accept-btn">
-                ACCEPT MISSION
-            </button>
-
-            <button id="decline-btn">
-                DECLINE
-            </button>
-
-            <div class="system-message" id="system-message">
-                SYSTEM AWAITING RESPONSE...
-            </div>
-
-        </div>
-
-    </main>
+button {
+    font-family: inherit;
+}
 
 
-    <!-- =========================
-         SECRET PHONE
-    ========================== -->
+/* =====================================================
+   SCREEN SYSTEM
+===================================================== */
 
-    <main id="phone-screen" class="screen">
+.screen {
+    display: none;
+    min-height: 100vh;
+}
 
-        <div class="phone">
-
-            <div class="phone-speaker"></div>
-
-            <div class="phone-status">
-                <span>9:41</span>
-                <span>▮▮▮ ◉</span>
-            </div>
-
-            <div class="phone-header">
-
-                <div>
-                    <p class="phone-small">AGENT DEVICE</p>
-                    <h2>MAJOODEH</h2>
-                </div>
-
-                <div class="clearance">
-                    <span>CLEARANCE</span>
-                    <strong id="clearance-value">0%</strong>
-                </div>
-
-            </div>
+.screen.active {
+    display: flex;
+}
 
 
-            <div class="mission-banner">
+/* =====================================================
+   CLASSIFIED TERMINAL
+===================================================== */
 
-                <span class="online-dot"></span>
+#classified-screen {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle at 50% 40%, #141a15 0%, #070908 45%, #020303 100%);
+    overflow: hidden;
+}
 
-                <div>
-                    <strong>OPERATION ACTIVE</strong>
-                    <small>Archive access granted</small>
-                </div>
+.scanlines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: .22;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(180,200,185,.08) 4px
+    );
+}
 
-            </div>
+.terminal-noise {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle, transparent 30%, rgba(0,0,0,.6));
+}
+
+.terminal {
+    width: min(92%, 560px);
+    border: 1px solid #303830;
+    background: rgba(5,8,6,.94);
+    box-shadow:
+        0 0 70px rgba(0,0,0,.9),
+        0 0 20px rgba(150,170,155,.03);
+}
+
+.terminal-top,
+.terminal-bottom {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 14px;
+    color: #4f5951;
+    font-size: 8px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #202720;
+}
+
+.terminal-bottom {
+    border-top: 1px solid #202720;
+    border-bottom: none;
+}
+
+.terminal-body {
+    padding: 42px 28px 30px;
+    text-align: center;
+}
+
+.terminal-code {
+    text-align: left;
+    color: #4c594e;
+    font-size: 8px;
+    line-height: 2;
+    margin-bottom: 38px;
+}
+
+.classified-stamp {
+    display: inline-block;
+    border: 2px solid #b3bcb4;
+    color: #c8cec9;
+    padding: 8px 16px;
+    font-family: "Space Mono", monospace;
+    font-weight: 700;
+    letter-spacing: 5px;
+    font-size: clamp(20px, 7vw, 32px);
+    transform: rotate(-3deg);
+    margin-bottom: 35px;
+}
+
+.file-info {
+    border-top: 1px solid #252c26;
+    border-bottom: 1px solid #252c26;
+    padding: 18px 5px;
+    text-align: left;
+}
+
+.file-info p {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: #69736c;
+    padding: 5px 0;
+}
+
+.file-info span {
+    color: #3f4841;
+}
+
+.file-info strong {
+    color: #9aa69c;
+    font-weight: 400;
+}
+
+.terminal-divider {
+    width: 45px;
+    height: 1px;
+    background: #4d584f;
+    margin: 25px auto;
+}
+
+.terminal-warning {
+    color: #747d76;
+    font-size: 9px;
+    line-height: 1.8;
+    margin-bottom: 28px;
+}
+
+#accept-btn {
+    width: 100%;
+    border: 1px solid #bac3bc;
+    background: #d6ddd7;
+    color: #080a08;
+    padding: 15px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+#accept-btn:hover {
+    background: white;
+    box-shadow: 0 0 20px rgba(210,220,212,.12);
+}
+
+#accept-btn:active {
+    transform: scale(.98);
+}
+
+#decline-btn {
+    background: none;
+    border: none;
+    color: #454e47;
+    margin-top: 18px;
+    font-size: 8px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+#decline-btn:hover {
+    color: #879087;
+}
+
+#terminal-response {
+    margin-top: 25px;
+    color: #414b43;
+    font-size: 8px;
+    letter-spacing: 1px;
+}
+
+.cursor {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
 
 
-            <!-- APP GRID -->
+/* =====================================================
+   PHONE
+===================================================== */
 
-            <section class="app-grid">
+#phone-screen {
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    background:
+        radial-gradient(circle at center, #1c241e, #070a08 70%);
+}
 
-                <button class="app" data-app="messages">
-                    <span class="app-icon messages-icon">💬</span>
-                    <span>Messages</span>
-                </button>
+.phone {
+    position: relative;
+    width: min(390px, 100%);
+    height: 760px;
+    max-height: 95vh;
+    overflow: hidden;
+    background:
+        linear-gradient(145deg, #111611, #090c0a);
+    border: 1px solid #343c35;
+    border-radius: 38px;
+    box-shadow:
+        0 35px 100px rgba(0,0,0,.9),
+        inset 0 0 50px rgba(255,255,255,.015);
+}
 
-                <button class="app" data-app="memories">
-                    <span class="app-icon">🧠</span>
-                    <span>Memories</span>
-                </button>
+.dynamic-island {
+    position: absolute;
+    z-index: 20;
+    top: 9px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95px;
+    height: 25px;
+    border-radius: 20px;
+    background: #030403;
+}
 
-                <button class="app" data-app="objects">
-                    <span class="app-icon">🧸</span>
-                    <span>Objects</span>
-                </button>
+.phone-status {
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 24px 9px;
+    color: #7b857d;
+    font-size: 9px;
+}
 
-                <button class="app" data-app="plans">
-                    <span class="app-icon">🗺️</span>
-                    <span>Plans</span>
-                </button>
+.phone-icons {
+    font-size: 8px;
+}
 
-                <button class="app" data-app="objectives">
-                    <span class="app-icon">🎯</span>
-                    <span>Objectives</span>
-                </button>
+.phone-view {
+    display: none;
+    height: calc(100% - 48px);
+    padding: 18px 20px 65px;
+    overflow-y: auto;
+}
 
-                <button class="app locked" data-app="final">
-                    <span class="app-icon">🔒</span>
-                    <span>???</span>
-                </button>
+.phone-view.active-view {
+    display: block;
+}
 
-            </section>
+.phone-view::-webkit-scrollbar {
+    width: 3px;
+}
 
-
-            <!-- HOME FOOTER -->
-
-            <div class="phone-footer">
-
-                <div class="footer-status">
-                    <span class="online-dot"></span>
-                    SECURE CONNECTION
-                </div>
-
-                <div class="footer-time">
-                    ARCHIVE // M-001
-                </div>
-
-            </div>
-
-        </div>
-
-    </main>
+.phone-view::-webkit-scrollbar-thumb {
+    background: #303830;
+}
 
 
-    <script src="script.js"></script>
+/* =====================================================
+   HOME
+===================================================== */
 
-</body>
-</html>
+.phone-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 8px 4px 18px;
+    border-bottom: 1px solid #202720;
+}
+
+.phone-header small,
+.clearance-display small {
+    display: block;
+    color: #515b53;
+    font-size: 7px;
+    letter-spacing: 1.5px;
+}
+
+.phone-header h1 {
+    font-family: "Space Mono", monospace;
+    font-size: 22px;
+    letter-spacing: 3px;
+    margin-top: 4px;
+}
+
+.clearance-display {
+    text-align: right;
+}
+
+.clearance-display strong {
+    display: block;
+    font-size: 17px;
+    font-weight: 400;
+    margin-top: 3px;
+}
+
+.mission-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 17px 2px 25px;
+    padding: 13px;
+    border: 1px solid #252d27;
+    border-radius: 12px;
+    background: rgba(255,255,255,.015);
+}
+
+.mission-status strong {
+    display: block;
+    font-size: 8px;
+    letter-spacing: 1px;
+}
+
+.mission-status span:not(.status-lock) {
+    display: block;
+    color: #535d56;
+    font-size: 7px;
+    margin-top: 4px;
+}
+
+.status-dot,
+.green-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #a7b6aa;
+    box-shadow: 0 0 8px rgba(170,190,175,.4);
+}
+
+.status-lock {
+    margin-left: auto;
+    color: #4d584f;
+    font-size: 8px;
+}
+
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 13px;
+}
+
+.app {
+    min-height: 104px;
+    border: 1px solid #252d27;
+    border-radius: 15px;
+    background: #0d110e;
+    color: #b7beb8;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: .2s;
+}
+
+.app:hover {
+    transform: translateY(-3px);
+    border-color: #4a554d;
+    background: #131813;
+}
+
+.app:active {
+    transform: scale(.96);
+}
+
+.app-icon {
+    font-size: 27px;
+}
+
+.app > span:last-child {
+    font-size: 8px;
+}
+
+.app.locked {
+    opacity: .38;
+    cursor: not-allowed;
+}
+
+.app.locked:hover {
+    transform: none;
+    background: #0d110e;
+    border-color: #252d27;
+}
+
+.home-footer {
+    position: absolute;
+    bottom: 50px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    color: #414a43;
+    font-size: 7px;
+}
+
+.home-footer > div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+/* =====================================================
+   APP HEADERS
+===================================================== */
+
+.app-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0 20px;
+    border-bottom: 1px solid #202720;
+}
+
+.app-header small {
+    color: #505a52;
+    font-size: 7px;
+    letter-spacing: 1.5px;
+}
+
+.app-header h2 {
+    font-family: "Space Mono", monospace;
+    font-size: 19px;
+    letter-spacing: 2px;
+    margin-top: 3px;
+}
+
+.back-btn {
+    width: 34px;
+    height: 34px;
+    border: 1px solid #293129;
+    border-radius: 10px;
+    background: #0d110e;
+    color: #aab3ab;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.archive-label {
+    color: #434d45;
+    font-size: 7px;
+    letter-spacing: 1px;
+    padding: 18px 2px 12px;
+}
+
+
+/* =====================================================
+   MESSAGES
+===================================================== */
+
+.message-list {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.record {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #252d27;
+    border-radius: 12px;
+    background: #0e120f;
+    color: #bbc2bc;
+    text-align: left;
+    cursor: pointer;
+}
+
+.record:hover {
+    border-color: #465148;
+}
+
+.record-icon {
+    width: 35px;
+    height: 35px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #333c35;
+    color: #69746b;
+    font-size: 8px;
+}
+
+.record div:nth-child(2) {
+    flex: 1;
+}
+
+.record strong {
+    display: block;
+    font-size: 9px;
+}
+
+.record span {
+    display: block;
+    color: #535e56;
+    font-size: 7px;
+    margin-top: 4px;
+}
+
+.record b {
+    color: #495249;
+}
+
+
+/* =====================================================
+   MEMORIES
+===================================================== */
+
+.memory-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.memory-card {
+    min-height: 145px;
+    padding: 13px;
+    text-align: left;
+    border: 1px solid #293129;
+    border-radius: 13px;
+    background:
+        linear-gradient(145deg, #141a15, #0b0f0c);
+    color: #b7beb8;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: .2s;
+}
+
+.memory-card:hover {
+    transform: translateY(-2px);
+    border-color: #4a554c;
+}
+
+.memory-card span {
+    color: #555f57;
+    font-size: 7px;
+    margin-bottom: auto;
+}
+
+.memory-card strong {
+    font-size: 9px;
+    line-height: 1.5;
+}
+
+.memory-card small {
+    color: #414a43;
+    font-size: 6px;
+    margin-top: 5px;
+}
+
+
+/* =====================================================
+   OBJECTS
+===================================================== */
+
+.object-card {
+    border: 1px solid #293129;
+    border-radius: 15px;
+    padding: 18px;
+    margin-top: 13px;
+    background: #0d110e;
+    text-align: center;
+}
+
+.object-number {
+    text-align: left;
+    color: #4d574f;
+    font-size: 7px;
+    letter-spacing: 1px;
+}
+
+.object-emoji {
+    font-size: 65px;
+    margin: 18px 0;
+}
+
+.object-card h3 {
+    font-family: "Space Mono", monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+.object-data {
+    border-top: 1px solid #202720;
+    margin-top: 18px;
+    padding-top: 12px;
+}
+
+.object-data p {
+    display: flex;
+    justify-content: space-between;
+    color: #737d75;
+    font-size: 7px;
+    padding: 5px 0;
+}
+
+.object-data span {
+    color: #414a43;
+}
+
+
+/* =====================================================
+   PLANS
+===================================================== */
+
+.plans-list {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 15px;
+}
+
+.operation {
+    display: flex;
+    gap: 12px;
+    padding: 13px;
+    border: 1px solid #293129;
+    border-radius: 12px;
+    background: #0d110e;
+}
+
+.operation-number {
+    color: #4d574f;
+    font-size: 9px;
+}
+
+.operation strong {
+    font-size: 8px;
+    letter-spacing: 1px;
+}
+
+.operation p {
+    color: #68736b;
+    font-size: 7px;
+    line-height: 1.65;
+    margin-top: 4px;
+}
+
+
+/* =====================================================
+   OBJECTIVES
+===================================================== */
+
+.objective-status {
+    margin: 18px 0;
+    padding: 17px;
+    border: 1px solid #293129;
+    border-radius: 13px;
+    text-align: center;
+}
+
+.big-clearance strong {
+    display: block;
+    font-family: "Space Mono", monospace;
+    font-size: 32px;
+}
+
+.big-clearance span {
+    color: #515b53;
+    font-size: 7px;
+    letter-spacing: 2px;
+}
+
+.objective-status p {
+    color: #5b665e;
+    font-size: 7px;
+    line-height: 1.6;
+    margin-top: 12px;
+}
+
+.objective-list {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.objective {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    border: 1px solid #293129;
+    border-radius: 12px;
+    background: #0d110e;
+}
+
+.objective > span {
+    color: #566057;
+    font-size: 9px;
+}
+
+.objective div {
+    flex: 1;
+}
+
+.objective strong {
+    display: block;
+    font-size: 8px;
+    letter-spacing: 1px;
+}
+
+.objective small {
+    color: #505a52;
+    font-size: 7px;
+}
+
+.objective b {
+    color: #424b44;
+    font-size: 6px;
+}
+
+.locked-objective {
+    opacity: .65;
+}
+
+
+/* =====================================================
+   HOME INDICATOR
+===================================================== */
+
+.home-indicator {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    border-radius: 10px;
+    background: #4a514b;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 430px) {
+
+    #phone-screen {
+        padding: 0;
+    }
+
+    .phone {
+        width: 100%;
+        height: 100vh;
+        max-height: none;
+        border-radius: 0;
+        border: none;
+    }
+
+    .terminal {
+        width: 92%;
+    }
+
+    .terminal-body {
+        padding: 32px 20px 25px;
+    }
+}
