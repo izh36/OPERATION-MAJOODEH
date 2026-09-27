@@ -1144,3 +1144,35 @@ button {
     padding: 15px;
   }
 }
+/* =========================================
+   CLUE COLLECTION ANIMATION
+========================================= */
+
+.hidden-clue.clue-collected {
+  display: inline-block !important;
+  animation: clueSpin 0.8s ease-in-out forwards;
+}
+
+@keyframes clueSpin {
+
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+
+  40% {
+    transform: scale(2) rotate(180deg);
+    opacity: 1;
+  }
+
+  70% {
+    transform: scale(1.6) rotate(360deg);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(0) rotate(720deg);
+    opacity: 0;
+  }
+
+}
