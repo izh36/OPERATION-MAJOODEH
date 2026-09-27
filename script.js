@@ -415,9 +415,16 @@ function collectClue(type) {
     return;
   }
 
-  objective1Clues[type] = true;
+objective1Clues[type] = true;
 
-  let progress = 0;
+let clueId = "clue-" + type;
+let clue = document.getElementById(clueId);
+
+if (clue) {
+  clue.classList.add("clue-collected");
+}
+
+let progress = 0;
 
   Object.keys(objective1Clues).forEach(function(key) {
     if (objective1Clues[key]) {
@@ -425,10 +432,14 @@ function collectClue(type) {
     }
   });
 
+  setTimeout(function() {
+
   showSystemNotification(
     "AUTHENTICATION MARKER RECOVERED",
     progress + " / 4 FOUND"
   );
+
+}, 850);
 
   document.getElementById("objective-progress").textContent =
     progress + " / 4 MARKERS RECOVERED";
