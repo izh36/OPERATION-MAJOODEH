@@ -473,6 +473,16 @@ function completeObjective1() {
     "OBJECTIVE #001 COMPLETE",
     "OBJECTIVE #002 UNLOCKED"
   );
+
+  setTimeout(function() {
+
+    openView("objectives-view");
+
+    setTimeout(function() {
+      openObjective(2);
+    }, 400);
+
+  }, 1000);
 }
 
 function showSystemNotification(title, message) {
@@ -537,6 +547,10 @@ function openObjective(number) {
   }
 
   if (number === 2) {
+
+    if (!document.getElementById("objective-2-card").classList.contains("objective-active")) {
+      return;
+    }
 
     openView("objective-2-detail-view");
 
