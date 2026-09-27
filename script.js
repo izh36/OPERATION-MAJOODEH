@@ -13,7 +13,8 @@ const messages = {
   },
   3: {
     title: "#003 NAIL TECHNICIAN",
-    content: 'Semsem becoming Majoodehs "professional" nail technician for approximately milyoon sa3a.'
+    content: 'Semsem becoming Majoodehs "professional" nail technician for approximately milyoon sa3a.',
+    clue: "nails"
   },
   4: {
     title: "#004 HUNGARY",
@@ -229,6 +230,25 @@ document.querySelectorAll(".message-item").forEach(function(item) {
     box.appendChild(number);
     box.appendChild(content);
 
+    if (
+      message.clue === "nails" &&
+      objective1Active &&
+      !objective1Clues.nails
+    ) {
+
+      const clue = document.createElement("span");
+      clue.className = "hidden-clue clue-deployed";
+      clue.id = "clue-nails";
+      clue.textContent = "💅";
+
+      clue.addEventListener("click", function(event) {
+        event.stopPropagation();
+        collectClue("nails");
+      });
+
+      box.appendChild(clue);
+    }
+
     detailContent.appendChild(box);
 
     openView("detail-view");
@@ -272,6 +292,25 @@ document.querySelectorAll(".memory-item").forEach(function(item) {
     box.appendChild(number);
     box.appendChild(content);
 
+    if (
+      id === "1" &&
+      objective1Active &&
+      !objective1Clues.cat
+    ) {
+
+      const clue = document.createElement("span");
+      clue.className = "hidden-clue clue-deployed";
+      clue.id = "clue-cat";
+      clue.textContent = "🐈";
+
+      clue.addEventListener("click", function(event) {
+        event.stopPropagation();
+        collectClue("cat");
+      });
+
+      box.appendChild(clue);
+    }
+
     detailContent.appendChild(box);
 
     openView("detail-view");
@@ -314,4 +353,117 @@ function showSystemAlert(title, message) {
     }, 300);
 
   }, 2200);
+}
+// ================================
+// OBJECTIVE #001
+// ================================
+
+let objective1Active = false;
+
+let objective1Clues = {
+  nails: false,
+  cat: false,
+  yoda: false,
+  sunrise: false
+};
+
+function openObjective(number) {
+
+  if (number === 1) {
+    openView("objective-detail-view");
+
+    if (objective1Active) {
+      document.getElementById("activate-objective-btn").textContent =
+        "OBJECTIVE ACTIVE";
+
+      document.getElementById("activate-objective-btn").disabled = true;
+    }
+  }
+}
+
+function activateObjective1() {
+
+  objective1Active = true;
+
+  document.getElementById("activate-objective-btn").textContent =
+    "OBJECTIVE ACTIVE";
+
+  document.getElementById("activate-objective-btn").disabled = true;
+
+  document.getElementById("objective-1-status").textContent =
+    "ACTIVE";
+
+  showSystemNotification(
+    "OBJECTIVE #001 ACTIVE",
+    "4 AUTHENTICATION MARKERS DEPLOYED"
+  );
+}
+
+function collectClue(type) {
+
+  if (!objective1Active) {
+    return;
+  }
+
+  if (objective1Clues[type]) {
+    return;
+  }
+
+  objective1Clues[type] = true;
+
+  let progress = 0;
+
+  Object.keys(objective1Clues).forEach(function(key) {
+    if (objective1Clues[key]) {
+      progress++;
+    }
+  });
+
+  showSystemNotification(
+    "AUTHENTICATION MARKER RECOVERED",
+    progress + " / 4 FOUND"
+  );
+
+  document.getElementById("objective-progress").textContent =
+    progress + " / 4 MARKERS RECOVERED";
+
+  if (progress === 4) {
+    completeObjective1();
+  }
+}
+
+function completeObjective1() {
+
+  document.getElementById("objective-1-status").textContent =
+    "COMPLETE";
+
+  document.getElementById("objective-1-card").classList.add(
+    "objective-complete"
+  );
+
+  document.getElementById("objective-2-card").classList.remove(
+    "objective-locked"
+  );
+
+  document.getElementById("objective-2-card").classList.add(
+    "objective-active"
+  );
+
+  document.getElementById("objective-2-status").textContent =
+    "AVAILABLE";
+
+  showSystemNotification(
+    "OBJECTIVE #001 COMPLETE",
+    "OBJECTIVE #002 UNLOCKED"
+  );
+}
+
+function showSystemNotification(title, message) {
+
+  alert(
+    "━━━━━━━━━━━━━━━━━━━━\n" +
+    title +
+    "\n━━━━━━━━━━━━━━━━━━━━\n\n" +
+    message
+  );
 }
