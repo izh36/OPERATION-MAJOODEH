@@ -477,10 +477,16 @@ function completeObjective1() {
 
 function showSystemNotification(title, message) {
 
-  alert(
-    "━━━━━━━━━━━━━━━━━━━━\n" +
-    title +
-    "\n━━━━━━━━━━━━━━━━━━━━\n\n" +
-    message
-  );
+  const notification = document.getElementById("system-notification");
+  const notificationTitle = document.getElementById("notification-title");
+  const notificationMessage = document.getElementById("notification-message");
+
+  notificationTitle.textContent = title;
+  notificationMessage.textContent = message;
+
+  notification.classList.add("show");
+
+  setTimeout(function() {
+    notification.classList.remove("show");
+  }, 2200);
 }
