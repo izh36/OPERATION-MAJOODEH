@@ -1210,3 +1210,90 @@ button {
   font-size: 13px;
   opacity: 0.7;
 }
+/* =========================================
+   OBJECTIVE #002 — CONNECTION PUZZLE
+========================================= */
+
+.connection-puzzle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.connection-puzzle.puzzle-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.connection-card {
+  padding: 18px 12px;
+  min-height: 82px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.035);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.connection-card span {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  opacity: 0.45;
+}
+
+.connection-card strong {
+  font-size: 12px;
+  letter-spacing: 0.8px;
+}
+
+.connection-card.selected {
+  transform: scale(1.04);
+  border-color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.1);
+}
+
+.connection-card.matched {
+  border-color: rgba(120,255,170,0.5);
+  background: rgba(120,255,170,0.08);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.connection-card.wrong {
+  animation: connectionWrong 0.45s ease;
+}
+
+@keyframes connectionWrong {
+
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-6px);
+  }
+
+  50% {
+    transform: translateX(6px);
+  }
+
+  75% {
+    transform: translateX(-4px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+
+}
