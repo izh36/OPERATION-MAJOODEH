@@ -490,3 +490,159 @@ function showSystemNotification(title, message) {
     notification.classList.remove("show");
   }, 2200);
 }
+// ================================
+// OBJECTIVE #002 — CONNECT
+// ================================
+
+let objective2Active = false;
+let objective2Selected = null;
+let objective2Matches = 0;
+
+function activateObjective2() {
+
+  objective2Active = true;
+
+  document.getElementById("activate-objective-2-btn").textContent =
+    "OBJECTIVE ACTIVE";
+
+  document.getElementById("activate-objective-2-btn").disabled = true;
+
+  document.getElementById("objective-2-status").textContent =
+    "ACTIVE";
+
+  document.getElementById("objective-2-puzzle").classList.add(
+    "puzzle-active"
+  );
+
+  showSystemNotification(
+    "OBJECTIVE #002 ACTIVE",
+    "4 CONNECTIONS REQUIRED"
+  );
+}
+
+function openObjective(number) {
+
+  if (number === 1) {
+
+    openView("objective-detail-view");
+
+    if (objective1Active) {
+      document.getElementById("activate-objective-btn").textContent =
+        "OBJECTIVE ACTIVE";
+
+      document.getElementById("activate-objective-btn").disabled = true;
+    }
+
+    return;
+  }
+
+  if (number === 2) {
+
+    openView("objective-2-detail-view");
+
+    if (objective2Active) {
+      document.getElementById("activate-objective-2-btn").textContent =
+        "OBJECTIVE ACTIVE";
+
+      document.getElementById("activate-objective-2-btn").disabled = true;
+    }
+  }
+}
+
+document.querySelectorAll(".connection-card").forEach(function(card) {
+
+  card.addEventListener("click", function() {
+
+    if (!objective2Active) {
+      return;
+    }
+
+    if (card.classList.contains("matched")) {
+      return;
+    }
+
+    if (!objective2Selected) {
+
+      objective2Selected = card;
+
+      card.classList.add("selected");
+
+      return;
+    }
+
+    if (objective2Selected === card) {
+      return;
+    }
+
+    if (
+      objective2Selected.dataset.pair ===
+      card.dataset.pair
+    ) {
+
+      objective2Selected.classList.remove("selected");
+      objective2Selected.classList.add("matched");
+
+      card.classList.add("matched");
+
+      objective2Matches++;
+
+      objective2Selected = null;
+
+      document.getElementById("objective-2-progress").textContent =
+        objective2Matches + " / 4 CONNECTIONS VERIFIED";
+
+      showSystemNotification(
+        "CONNECTION VERIFIED",
+        objective2Matches + " / 4 MATCHED"
+      );
+
+      if (objective2Matches === 4) {
+        completeObjective2();
+      }
+
+    } else {
+
+      objective2Selected.classList.add("wrong");
+      card.classList.add("wrong");
+
+      setTimeout(function() {
+
+        objective2Selected.classList.remove("selected");
+        objective2Selected.classList.remove("wrong");
+        card.classList.remove("wrong");
+
+        objective2Selected = null;
+
+      }, 500);
+
+    }
+
+  });
+
+});
+
+function completeObjective2() {
+
+  document.getElementById("objective-2-status").textContent =
+    "COMPLETE";
+
+  document.getElementById("objective-2-card").classList.add(
+    "objective-complete"
+  );
+
+  document.getElementById("objective-3-card").classList.remove(
+    "objective-locked"
+  );
+
+  document.getElementById("objective-3-card").classList.add(
+    "objective-active"
+  );
+
+  document.getElementById("objective-3-status").textContent =
+    "AVAILABLE";
+
+  showSystemNotification(
+    "OBJECTIVE #002 COMPLETE",
+    "OBJECTIVE #003 UNLOCKED"
+  );
+}
