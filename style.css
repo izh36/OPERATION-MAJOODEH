@@ -1514,3 +1514,251 @@ button {
   }
 
 }
+/* =========================================
+   CLASSIFIED OPENING — DEEP SYSTEM MODE
+========================================= */
+
+#classified-screen {
+  position: relative;
+  overflow: hidden;
+  background: #020403;
+  color: #9cffb0;
+}
+
+/* Binary rain */
+
+.binary-rain {
+  position: absolute;
+  inset: -30px 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.42;
+}
+
+.binary-column {
+  position: absolute;
+  top: -180px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  line-height: 1;
+  color: #174d27;
+  text-shadow: 0 0 6px rgba(50,255,90,0.25);
+  animation: binaryFall linear infinite;
+}
+
+.binary-column span {
+  opacity: 0.45;
+}
+
+.binary-column span:nth-child(5n) {
+  color: #54ff78;
+  opacity: 0.9;
+}
+
+.binary-column span:nth-child(9n) {
+  opacity: 0.15;
+}
+
+@keyframes binaryFall {
+
+  0% {
+    transform: translateY(-20%);
+  }
+
+  100% {
+    transform: translateY(125vh);
+  }
+
+}
+
+/* Tiny system labels */
+
+.classified-system-status {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  right: 18px;
+  z-index: 3;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+
+  font-family: "Courier New", monospace;
+  font-size: 7px;
+  letter-spacing: 1.5px;
+  color: #4b9b59;
+
+  opacity: 0.55;
+}
+
+.classified-system-status span:nth-child(2) {
+  color: #75ff8c;
+}
+
+.classified-system-status span:last-child {
+  text-align: right;
+}
+
+/* Keep terminal above binary rain */
+
+#classified-screen .terminal {
+  position: relative;
+  z-index: 2;
+}
+
+/* Extra warning */
+
+.classified-system-warning {
+  margin: 18px 0 20px;
+  padding: 13px;
+
+  border-left: 2px solid rgba(80,255,110,0.45);
+
+  background: rgba(20,255,70,0.035);
+
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  line-height: 1.8;
+  letter-spacing: 1px;
+
+  color: #5fba6e;
+
+  animation: warningFlicker 4s infinite;
+}
+
+.classified-system-warning strong {
+  color: #a5ffb4;
+  font-weight: 500;
+}
+
+@keyframes warningFlicker {
+
+  0%, 91%, 100% {
+    opacity: 0.65;
+  }
+
+  92% {
+    opacity: 0.2;
+  }
+
+  93% {
+    opacity: 0.8;
+  }
+
+  94% {
+    opacity: 0.35;
+  }
+
+}
+
+/* Terminal response */
+
+.terminal-response-lines {
+  margin-top: 22px;
+  padding: 12px 0;
+
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  line-height: 2;
+
+  color: #54c968;
+  opacity: 0.65;
+}
+
+.terminal-response-lines div {
+  animation: systemLineAppear 0.8s ease both;
+}
+
+.terminal-response-lines div:nth-child(2) {
+  animation-delay: 0.8s;
+}
+
+.terminal-response-lines div:nth-child(3) {
+  animation-delay: 1.6s;
+}
+
+@keyframes systemLineAppear {
+
+  from {
+    opacity: 0;
+    transform: translateX(-5px);
+  }
+
+  to {
+    opacity: 0.65;
+    transform: translateX(0);
+  }
+
+}
+
+/* Operation */
+
+.operation-title {
+  margin-top: 12px;
+
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+
+  color: #8dff9e;
+
+  text-shadow:
+    0 0 8px rgba(70,255,100,0.25);
+}
+
+/* Make the opening feel alive */
+
+#classified-screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(80,255,100,0.025) 0px,
+      rgba(80,255,100,0.025) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+
+  animation: screenFlicker 5s infinite;
+}
+
+@keyframes screenFlicker {
+
+  0%, 88%, 100% {
+    opacity: 0.45;
+  }
+
+  89% {
+    opacity: 0.2;
+  }
+
+  90% {
+    opacity: 0.6;
+  }
+
+  91% {
+    opacity: 0.3;
+  }
+
+}
+
+/* Buttons stay above the atmosphere */
+
+#classified-screen .terminal-actions {
+  position: relative;
+  z-index: 5;
+}
+
+#classified-screen button {
+  font-family: "Courier New", monospace;
+}
