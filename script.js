@@ -599,6 +599,10 @@ function openObjective(number) {
 
     openView("objective-3-detail-view");
 
+if (!objective3Active) {
+  resetObjective3();
+}
+    
     if (objective3Active) {
       document.getElementById("activate-objective-3-btn").textContent =
         "OBJECTIVE ACTIVE";
