@@ -153,20 +153,33 @@ apps.forEach(function(app) {
 
     if (target === "final-view") {
 
-      showSystemAlert(
-        "FINAL FILE LOCKED",
-        "COMPLETE ALL OBJECTIVES"
-      );
+      if (
+        app.classList.contains("locked-app")
+      ) {
+        showSystemAlert(
+          "FINAL FILE LOCKED",
+          "COMPLETE ALL OBJECTIVES"
+        );
+
+        return;
+      }
+
+      document.getElementById("final-case-title").textContent =
+        "🔓 CASE #999";
+
+      document.getElementById("final-case-status").textContent =
+        "STATUS: DECLASSIFIED";
+
+      openView("final-view");
 
       return;
     }
 
     openView(target);
+
   });
 
 });
-
-
 function openView(viewId) {
 
   document.querySelectorAll(".phone-view").forEach(function(view) {
