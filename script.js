@@ -1,3 +1,52 @@
+// =========================================
+// CLASSIFIED OPENING — BINARY RAIN
+// =========================================
+
+(function createBinaryRain() {
+
+  const rain = document.querySelector(".binary-rain");
+
+  if (!rain) {
+    return;
+  }
+
+  const columnCount = 22;
+
+  for (let i = 0; i < columnCount; i++) {
+
+    const column = document.createElement("div");
+
+    column.className = "binary-column";
+
+    column.style.left =
+      (i / columnCount * 100) + "%";
+
+    column.style.animationDuration =
+      (9 + Math.random() * 10) + "s";
+
+    column.style.animationDelay =
+      (-Math.random() * 12) + "s";
+
+    const length =
+      18 + Math.floor(Math.random() * 18);
+
+    for (let j = 0; j < length; j++) {
+
+      const bit = document.createElement("span");
+
+      bit.textContent =
+        Math.random() > 0.5 ? "1" : "0";
+
+      column.appendChild(bit);
+
+    }
+
+    rain.appendChild(column);
+
+  }
+
+})();
+
 // ================================
 // DATA
 // ================================
