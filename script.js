@@ -698,3 +698,136 @@ function completeObjective2() {
 
   }, 1200);
 }
+// ================================
+// OBJECTIVE #003 — RECONSTRUCT
+// ================================
+
+let objective3Active = false;
+let objective3Order = [];
+
+function activateObjective3() {
+
+  objective3Active = true;
+
+  document.getElementById("activate-objective-3-btn").textContent =
+    "OBJECTIVE ACTIVE";
+
+  document.getElementById("activate-objective-3-btn").disabled = true;
+
+  document.getElementById("objective-3-status").textContent =
+    "ACTIVE";
+
+  document.getElementById("objective-3-puzzle").classList.add(
+    "puzzle-active"
+  );
+
+  shuffleTimeline();
+
+  showSystemNotification(
+    "OBJECTIVE #003 ACTIVE",
+    "RECONSTRUCT THE ARCHIVE"
+  );
+}
+
+function shuffleTimeline() {
+
+  const puzzle =
+    document.getElementById("objective-3-puzzle");
+
+  const cards = Array.from(
+    puzzle.querySelectorAll(".timeline-card")
+  );
+
+  for (let i = cards.length - 1; i > 0; i--) {
+
+    const j = Math.floor(Math.random() * (i + 1));
+
+    const temp = cards[i];
+    cards[i] = cards[j];
+    cards[j] = temp;
+  }
+
+  cards.forEach(function(card) {
+    puzzle.appendChild(card);
+  });
+}
+
+document.querySelectorAll(".timeline-card").forEach(function(card) {
+
+  card.addEventListener("click", function() {
+
+    if (!objective3Active) {
+      return;
+    }
+
+    const currentCards =
+      Array.from(
+        document.querySelectorAll(".timeline-card")
+      );
+
+    const clickedIndex =
+      currentCards.indexOf(card);
+
+    objective3Order.push({
+      card: card,
+      correctOrder: Number(card.dataset.order)
+    });
+
+    card.classList.add("timeline-selected");
+
+    if (objective3Order.length === 1) {
+      return;
+    }
+
+    const previous =
+      objective3Order[objective3Order.length - 2];
+
+    if (
+      Number(previous.correctOrder) <
+      Number(card.dataset.order)
+    ) {
+
+      card.classList.add("timeline-correct");
+
+    } else {
+
+      card.classList.add("timeline-wrong");
+
+      setTimeout(function() {
+
+        card.classList.remove("timeline-wrong");
+        previous.card.classList.remove("timeline-selected");
+
+      }, 500);
+
+      objective3Order = [];
+      return;
+    }
+
+    if (objective3Order.length === 6) {
+      completeObjective3();
+    }
+
+  });
+
+});
+
+function completeObjective3() {
+
+  document.getElementById("objective-3-status").textContent =
+    "COMPLETE";
+
+  document.getElementById("objective-3-card").classList.remove(
+    "objective-active"
+  );
+
+  document.getElementById("objective-3-card").classList.add(
+    "objective-complete"
+  );
+
+  showSystemNotification(
+    "ARCHIVE RECONSTRUCTED",
+    "6 / 6 EVENTS VERIFIED"
+  );
+
+}
