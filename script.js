@@ -451,6 +451,8 @@ let progress = 0;
 
 function completeObjective1() {
 
+updateClearance(33);
+  
   document.getElementById("objective-1-status").textContent =
     "COMPLETE";
 
@@ -699,6 +701,8 @@ document.querySelectorAll(".connection-card").forEach(function(card) {
 
 function completeObjective2() {
 
+updateClearance(66);
+  
   document.getElementById("objective-2-status").textContent =
     "COMPLETE";
 
@@ -985,6 +989,8 @@ function animateTimelineCompletion() {
 
 function completeObjective3() {
 
+updateClearance(100);
+  
   document.getElementById("objective-3-status").textContent =
     "COMPLETE";
 
@@ -1038,3 +1044,11 @@ document.getElementById("main-final-status").textContent =
 
 }
 
+function updateClearance(percent) {
+
+  document.getElementById("terminal-clearance").textContent =
+    percent + "%";
+
+  document.getElementById("phone-clearance").textContent =
+    percent + "%";
+}
