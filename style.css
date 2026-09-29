@@ -1337,3 +1337,71 @@ button {
   }
 
 }
+/* =========================================
+   OBJECTIVE #003 — TIMELINE PUZZLE
+========================================= */
+
+.timeline-puzzle {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.timeline-puzzle.puzzle-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.timeline-card {
+  padding: 14px;
+  min-height: 58px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.05);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease,
+    background 0.2s ease;
+}
+
+.timeline-card span {
+  font-size: 8px;
+  letter-spacing: 1px;
+  opacity: 0.45;
+}
+
+.timeline-card strong {
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.timeline-card.timeline-selected {
+  transform: scale(1.03);
+  border-color: rgba(255,255,255,0.6);
+}
+
+.timeline-card.timeline-correct {
+  background: rgba(100,200,140,0.12);
+  border-color: rgba(100,200,140,0.45);
+}
+
+.timeline-card.timeline-wrong {
+  animation: timelineWrong 0.45s ease;
+}
+
+@keyframes timelineWrong {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
