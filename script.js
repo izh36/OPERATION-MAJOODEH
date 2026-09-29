@@ -726,11 +726,12 @@ function completeObjective2() {
 // ================================
 
 let objective3Active = false;
-let objective3Order = [];
+let objective3CorrectCount = 0;
 
 function activateObjective3() {
 
   objective3Active = true;
+  objective3CorrectCount = 0;
 
   document.getElementById("activate-objective-3-btn").textContent =
     "OBJECTIVE ACTIVE";
@@ -739,6 +740,30 @@ function activateObjective3() {
 
   document.getElementById("objective-3-status").textContent =
     "ACTIVE";
+
+  document.getElementById("objective-3-progress").textContent =
+    "0 / 6 EVENTS VERIFIED";
+
+  const cards = document.querySelectorAll(".timeline-card");
+
+  cards.forEach(function(card) {
+
+    card.classList.remove(
+      "timeline-selected",
+      "timeline-correct",
+      "timeline-wrong",
+      "timeline-rearranging"
+    );
+
+    card.removeAttribute("data-correct-number");
+
+    const number = card.querySelector(".timeline-number");
+
+    if (number) {
+      number.remove();
+    }
+
+  });
 
   document.getElementById("objective-3-puzzle").classList.add(
     "puzzle-active"
@@ -750,6 +775,42 @@ function activateObjective3() {
     "OBJECTIVE #003 ACTIVE",
     "RECONSTRUCT THE ARCHIVE"
   );
+}
+
+function resetObjective3() {
+
+  objective3Active = false;
+  objective3CorrectCount = 0;
+
+  const cards = document.querySelectorAll(".timeline-card");
+
+  cards.forEach(function(card) {
+
+    card.classList.remove(
+      "timeline-selected",
+      "timeline-correct",
+      "timeline-wrong",
+      "timeline-rearranging"
+    );
+
+    card.removeAttribute("data-correct-number");
+
+    const number = card.querySelector(".timeline-number");
+
+    if (number) {
+      number.remove();
+    }
+
+  });
+
+  document.getElementById("objective-3-progress").textContent =
+    "0 / 6 EVENTS VERIFIED";
+
+  document.getElementById("activate-objective-3-btn").textContent =
+    "ACTIVATE OBJECTIVE";
+
+  document.getElementById("activate-objective-3-btn").disabled = false;
+
 }
 
 function shuffleTimeline() {
@@ -783,38 +844,57 @@ document.querySelectorAll(".timeline-card").forEach(function(card) {
       return;
     }
 
-    const currentCards =
-      Array.from(
-        document.querySelectorAll(".timeline-card")
-      );
-
-    const clickedIndex =
-      currentCards.indexOf(card);
-
-    objective3Order.push({
-      card: card,
-      correctOrder: Number(card.dataset.order)
-    });
-
-    card.classList.add("timeline-selected");
-
-    if (objective3Order.length === 1) {
+    if (card.classList.contains("timeline-correct")) {
       return;
     }
 
-    const previous =
-      objective3Order[objective3Order.length - 2];
+    const expectedOrder =
+      objective3CorrectCount + 1;
 
-    if (
-      Number(previous.correctOrder) <
-      Number(card.dataset.order)
-    ) {
+    const cardOrder =
+      Number(card.dataset.order);
+
+    if (cardOrder === expectedOrder) {
+
+      objective3CorrectCount++;
 
       card.classList.add("timeline-correct");
 
+      const number =
+        document.createElement("span");
+
+      number.className =
+        "timeline-number";
+
+      number.textContent =
+        objective3CorrectCount;
+
+      card.insertBefore(
+        number,
+        card.firstChild
+      );
+
       document.getElementById("objective-3-progress").textContent =
-  objective3Order.length + " / 6 EVENTS VERIFIED";
-      
+        objective3CorrectCount +
+        " / 6 EVENTS VERIFIED";
+
+      if (objective3CorrectCount < 6) {
+
+        showSystemNotification(
+          "EVENT VERIFIED",
+          objective3CorrectCount + " / 6 CORRECT"
+        );
+
+      }
+
+      if (objective3CorrectCount === 6) {
+
+        objective3Active = false;
+
+        animateTimelineCompletion();
+
+      }
+
     } else {
 
       card.classList.add("timeline-wrong");
@@ -822,21 +902,69 @@ document.querySelectorAll(".timeline-card").forEach(function(card) {
       setTimeout(function() {
 
         card.classList.remove("timeline-wrong");
-        previous.card.classList.remove("timeline-selected");
 
       }, 500);
 
-      objective3Order = [];
-      return;
-    }
-
-    if (objective3Order.length === 6) {
-      completeObjective3();
     }
 
   });
 
 });
+
+function animateTimelineCompletion() {
+
+  const puzzle =
+    document.getElementById("objective-3-puzzle");
+
+  const cards =
+    Array.from(
+      puzzle.querySelectorAll(".timeline-card")
+    );
+
+  cards.forEach(function(card) {
+
+    card.classList.add(
+      "timeline-rearranging"
+    );
+
+  });
+
+  showSystemNotification(
+    "ARCHIVE RECONSTRUCTED",
+    "REORDERING CHRONOLOGICALLY"
+  );
+
+  setTimeout(function() {
+
+    cards.sort(function(a, b) {
+
+      return Number(a.dataset.order) -
+        Number(b.dataset.order);
+
+    });
+
+    cards.forEach(function(card) {
+      puzzle.appendChild(card);
+    });
+
+    cards.forEach(function(card) {
+      card.classList.remove(
+        "timeline-rearranging"
+      );
+    });
+
+    document.getElementById("objective-3-progress").textContent =
+      "6 / 6 EVENTS VERIFIED";
+
+    setTimeout(function() {
+
+      completeObjective3();
+
+    }, 900);
+
+  }, 1400);
+
+}
 
 function completeObjective3() {
 
@@ -851,33 +979,30 @@ function completeObjective3() {
     "objective-complete"
   );
 
-  document.getElementById("objective-3-progress").textContent =
-    "6 / 6 EVENTS VERIFIED";
-
   showSystemNotification(
-    "ARCHIVE RECONSTRUCTED",
-    "6 / 6 EVENTS VERIFIED"
+    "OBJECTIVE #003 COMPLETE",
+    "CLEARANCE: 100%"
   );
 
   setTimeout(function() {
 
     showSystemNotification(
-      "OBJECTIVE #003 COMPLETE",
-      "CLEARANCE: 100%"
+      "FINAL FILE UNLOCKED",
+      "CASE #999 DECLASSIFIED"
     );
 
   }, 2500);
 
- setTimeout(function() {
+  setTimeout(function() {
 
-  document.getElementById("final-case-title").textContent =
-    "🔓 CASE #999";
+    document.getElementById("final-case-title").textContent =
+      "🔓 CASE #999";
 
-  document.getElementById("final-case-status").textContent =
-    "STATUS: DECLASSIFIED";
+    document.getElementById("final-case-status").textContent =
+      "STATUS: DECLASSIFIED";
 
-  openView("final-view");
+    openView("final-view");
 
-}, 6500);
+  }, 5000);
 
 }
