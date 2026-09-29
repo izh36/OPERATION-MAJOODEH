@@ -1038,25 +1038,13 @@ document.getElementById("main-final-icon").textContent =
 
 document.getElementById("main-final-label").textContent =
   "CASE #999";
+
+document.getElementById("main-final-status").textContent =
+  "DECLASSIFIED";
     
     openView("final-view");
 
   }, 4200);
 
 }
-function openFinalCase() {
 
-  const card = document.getElementById("final-case-card");
-
-  if (card.classList.contains("objective-locked")) {
-    return;
-  }
-
-  document.getElementById("final-case-title").textContent =
-    "🔓 CASE #999";
-
-  document.getElementById("final-case-status").textContent =
-    "STATUS: DECLASSIFIED";
-
-  openView("final-view");
-}
