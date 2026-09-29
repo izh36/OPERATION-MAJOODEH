@@ -662,6 +662,10 @@ function completeObjective2() {
   document.getElementById("objective-2-status").textContent =
     "COMPLETE";
 
+  document.getElementById("objective-2-card").classList.remove(
+    "objective-active"
+  );
+
   document.getElementById("objective-2-card").classList.add(
     "objective-complete"
   );
@@ -681,4 +685,16 @@ function completeObjective2() {
     "OBJECTIVE #002 COMPLETE",
     "OBJECTIVE #003 UNLOCKED"
   );
+
+  setTimeout(function() {
+
+    openView("objectives-view");
+
+    setTimeout(function() {
+
+      openObjective(3);
+
+    }, 700);
+
+  }, 1200);
 }
