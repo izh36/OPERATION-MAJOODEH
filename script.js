@@ -582,6 +582,29 @@ function openObjective(number) {
 
       document.getElementById("activate-objective-2-btn").disabled = true;
     }
+
+    return;
+  }
+
+  if (number === 3) {
+
+    const objective3Card =
+      document.getElementById("objective-3-card");
+
+    if (
+      objective3Card.classList.contains("objective-locked")
+    ) {
+      return;
+    }
+
+    openView("objective-3-detail-view");
+
+    if (objective3Active) {
+      document.getElementById("activate-objective-3-btn").textContent =
+        "OBJECTIVE ACTIVE";
+
+      document.getElementById("activate-objective-3-btn").disabled = true;
+    }
   }
 }
 
