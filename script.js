@@ -877,4 +877,10 @@ function completeObjective3() {
 
   }, 5000);
 
+  setTimeout(function() {
+
+    openView("final-view");
+
+  }, 6500);
+
 }
