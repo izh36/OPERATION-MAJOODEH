@@ -995,7 +995,7 @@ function completeObjective3() {
       "CASE #999 DECLASSIFIED"
     );
 
-  }, 2500);
+  }, 2200);
 
   setTimeout(function() {
 
@@ -1007,6 +1007,6 @@ function completeObjective3() {
 
     openView("final-view");
 
-  }, 5000);
+  }, 4200);
 
 }
