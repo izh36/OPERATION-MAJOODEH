@@ -868,19 +868,16 @@ function completeObjective3() {
 
   }, 2500);
 
-  setTimeout(function() {
+ setTimeout(function() {
 
-    showSystemNotification(
-      "FINAL FILE UNLOCKED",
-      "CASE #999 DECLASSIFIED"
-    );
+  document.getElementById("final-case-title").textContent =
+    "🔓 CASE #999";
 
-  }, 5000);
+  document.getElementById("final-case-status").textContent =
+    "STATUS: DECLASSIFIED";
 
-  setTimeout(function() {
+  openView("final-view");
 
-    openView("final-view");
-
-  }, 6500);
+}, 6500);
 
 }
