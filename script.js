@@ -1018,16 +1018,6 @@ function completeObjective3() {
     document.getElementById("final-case-status").textContent =
       "STATUS: DECLASSIFIED";
 
-document.getElementById("final-case-card").classList.remove(
-  "objective-locked"
-);
-
-document.getElementById("final-case-card").classList.add(
-  "objective-active"
-);
-
-document.getElementById("final-case-card-status").textContent =
-  "DECLASSIFIED";
 
 document.getElementById("main-final-app").classList.remove(
   "locked-app"
