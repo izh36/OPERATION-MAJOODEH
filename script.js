@@ -812,6 +812,9 @@ document.querySelectorAll(".timeline-card").forEach(function(card) {
 
       card.classList.add("timeline-correct");
 
+      document.getElementById("objective-3-progress").textContent =
+  objective3Order.length + " / 6 EVENTS VERIFIED";
+      
     } else {
 
       card.classList.add("timeline-wrong");
