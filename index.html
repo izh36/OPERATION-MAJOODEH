@@ -320,188 +320,196 @@
       </div>
 
 
-      <!-- OBJECTIVES -->
-      <div id="objectives-view" class="phone-view">
+    <!-- OBJECTIVES -->
 
-        <div class="view-header">
-          <button class="back-btn">‹</button>
-          <span>OBJECTIVES</span>
-        </div>
+<div id="objectives-view" class="phone-view">
 
-        <div class="objective-list">
+  <div class="view-header">
+    <button class="back-btn">‹</button>
+    <span>OBJECTIVES</span>
+  </div>
 
-          <section id="objectives-view" class="view">
-    <div class="view-header">
-        <button class="back-btn" onclick="showView('home-view')">←</button>
-        <div>
-            <div class="eyebrow">MISSION CONTROL</div>
-            <h2>Objectives</h2>
-        </div>
+  <div class="objective-list">
+
+    <div
+      class="objective-card objective-active"
+      id="objective-1-card"
+      onclick="openObjective(1)"
+    >
+      <span>#001</span>
+      <strong>RECOVER</strong>
+      <small id="objective-1-status">AVAILABLE</small>
     </div>
 
-    <div class="archive-list">
+    <div
+      class="objective-card objective-locked"
+      id="objective-2-card"
+      onclick="openObjective(2)"
+    >
+      <span>#002</span>
+      <strong>CONNECT</strong>
+      <small id="objective-2-status">LOCKED</small>
+    </div>
 
-        <div class="objective-card objective-active" id="objective-1-card" onclick="openObjective(1)">
-            <span>#001</span>
-            <strong>RECOVER</strong>
-            <small id="objective-1-status">AVAILABLE</small>
-        </div>
+    <div
+      class="objective-card objective-locked"
+      id="objective-3-card"
+    >
+      <span>#003</span>
+      <strong>RECONSTRUCT</strong>
+      <small id="objective-3-status">LOCKED</small>
+    </div>
 
-        <div class="objective-card objective-locked"
-     id="objective-2-card"
-     onclick="openObjective(2)">
-
-    <span>#002</span>
-    <strong>CONNECT</strong>
-    <small id="objective-2-status">LOCKED</small>
+  </div>
 
 </div>
 
-        <div class="objective-card objective-locked" id="objective-3-card">
-            <span>#003</span>
-            <strong>RECONSTRUCT</strong>
-            <small id="objective-3-status">LOCKED</small>
-        </div>
 
+<!-- OBJECTIVE #001 -->
+
+<div id="objective-detail-view" class="phone-view">
+
+  <div class="view-header">
+    <button class="back-btn">‹</button>
+
+    <div>
+      <div class="eyebrow">CLASSIFIED OBJECTIVE</div>
+      <h2>OBJECTIVE #001</h2>
     </div>
-</section>
-<section id="objective-detail-view" class="view">
-    <div class="view-header">
-        <button class="back-btn" onclick="showView('objectives-view')">←</button>
-        <div>
-            <div class="eyebrow">CLASSIFIED OBJECTIVE</div>
-            <h2 id="objective-detail-title">OBJECTIVE #001</h2>
-        </div>
-    </div>
+  </div>
 
-    <div class="classified-detail">
+  <div class="classified-detail">
 
-        <div class="detail-code">RECOVER</div>
+    <div class="detail-code">RECOVER</div>
 
-        <p id="objective-detail-text">
-            Four authentication markers have been embedded
-            inside the archive.
-        </p>
+    <p>
+      Four authentication markers have been embedded
+      inside the archive.
+    </p>
 
-        <p>
-            Locate all four markers to verify archive access.
-        </p>
+    <p>
+      Locate all four markers to verify archive access.
+    </p>
 
-        <button id="activate-objective-btn"
-                class="mission-btn"
-                onclick="activateObjective1()">
-            ACTIVATE OBJECTIVE
-        </button>
+    <button
+      id="activate-objective-btn"
+      class="mission-btn"
+      onclick="activateObjective1()"
+    >
+      ACTIVATE OBJECTIVE
+    </button>
 
-        <div id="objective-progress">
-            0 / 4 MARKERS RECOVERED
-        </div>
-
-    </div>
-</section>
-          <section id="objective-2-detail-view" class="view">
-
-    <div class="view-header">
-        <button class="back-btn" onclick="showView('objectives-view')">←</button>
-
-        <div>
-            <div class="eyebrow">CLASSIFIED OBJECTIVE</div>
-            <h2>OBJECTIVE #002</h2>
-        </div>
+    <div id="objective-progress">
+      0 / 4 MARKERS RECOVERED
     </div>
 
-    <div class="classified-detail">
+  </div>
 
-        <div class="detail-code">CONNECT</div>
+</div>
 
-        <p>
-            Four fragments have been separated from their
-            original records.
-        </p>
 
-        <p>
-            Identify the connection between each pair.
-        </p>
+<!-- OBJECTIVE #002 -->
 
-        <button
-            id="activate-objective-2-btn"
-            class="mission-btn"
-            onclick="activateObjective2()">
-            ACTIVATE OBJECTIVE
-        </button>
+<div id="objective-2-detail-view" class="phone-view">
 
-        <div id="objective-2-progress">
-            0 / 4 CONNECTIONS VERIFIED
-        </div>
+  <div class="view-header">
+    <button class="back-btn">‹</button>
 
+    <div>
+      <div class="eyebrow">CLASSIFIED OBJECTIVE</div>
+      <h2>OBJECTIVE #002</h2>
+    </div>
+  </div>
+
+  <div class="classified-detail">
+
+    <div class="detail-code">CONNECT</div>
+
+    <p>
+      Four fragments have been separated from their
+      original records.
+    </p>
+
+    <p>
+      Identify the connection between each pair.
+    </p>
+
+    <button
+      id="activate-objective-2-btn"
+      class="mission-btn"
+      onclick="activateObjective2()"
+    >
+      ACTIVATE OBJECTIVE
+    </button>
+
+    <div id="objective-2-progress">
+      0 / 4 CONNECTIONS VERIFIED
     </div>
 
-<div id="objective-2-puzzle" class="connection-puzzle">
+  </div>
+
+  <div id="objective-2-puzzle" class="connection-puzzle">
 
     <div class="connection-column connection-left">
 
-        <div class="connection-column-title">
-            LOCATIONS
-        </div>
+      <div class="connection-column-title">
+        LOCATIONS
+      </div>
 
-        <div class="connection-card" data-pair="debrecen">
-            <span>FRAGMENT A</span>
-            <strong>DEBRECEN</strong>
-        </div>
+      <div class="connection-card" data-pair="debrecen">
+        <span>FRAGMENT A</span>
+        <strong>DEBRECEN</strong>
+      </div>
 
-        <div class="connection-card" data-pair="table">
-            <span>FRAGMENT B</span>
-            <strong>NYUGATI</strong>
-        </div>
+      <div class="connection-card" data-pair="table">
+        <span>FRAGMENT B</span>
+        <strong>NYUGATI</strong>
+      </div>
 
-        <div class="connection-card" data-pair="pigeon">
-            <span>FRAGMENT C</span>
-            <strong>LEONARDO</strong>
-        </div>
+      <div class="connection-card" data-pair="pigeon">
+        <span>FRAGMENT C</span>
+        <strong>LEONARDO</strong>
+      </div>
 
-        <div class="connection-card" data-pair="cafe">
-            <span>FRAGMENT D</span>
-            <strong>ANNA CAFÉ</strong>
-        </div>
+      <div class="connection-card" data-pair="cafe">
+        <span>FRAGMENT D</span>
+        <strong>ANNA CAFÉ</strong>
+      </div>
 
     </div>
 
     <div class="connection-column connection-right">
 
-        <div class="connection-column-title">
-            MEMORY FRAGMENTS
-        </div>
+      <div class="connection-column-title">
+        MEMORY FRAGMENTS
+      </div>
 
-        <div class="connection-card" data-pair="debrecen">
-            <span>FRAGMENT E</span>
-            <strong>THESIS DEFENSE</strong>
-        </div>
+      <div class="connection-card" data-pair="debrecen">
+        <span>FRAGMENT E</span>
+        <strong>THESIS DEFENSE</strong>
+      </div>
 
-        <div class="connection-card" data-pair="table">
-            <span>FRAGMENT F</span>
-            <strong>ENORMOUS TABLE</strong>
-        </div>
+      <div class="connection-card" data-pair="table">
+        <span>FRAGMENT F</span>
+        <strong>ENORMOUS TABLE</strong>
+      </div>
 
-        <div class="connection-card" data-pair="pigeon">
-            <span>FRAGMENT G</span>
-            <strong>BABY PIGEON</strong>
-        </div>
+      <div class="connection-card" data-pair="pigeon">
+        <span>FRAGMENT G</span>
+        <strong>BABY PIGEON</strong>
+      </div>
 
-        <div class="connection-card" data-pair="cafe">
-            <span>FRAGMENT H</span>
-            <strong>THE TOPIC</strong>
-        </div>
+      <div class="connection-card" data-pair="cafe">
+        <span>FRAGMENT H</span>
+        <strong>THE TOPIC</strong>
+      </div>
 
     </div>
 
+  </div>
+
 </div>
 
-     
-
-</section>
-        </div>
-
-      </div>
 
 
       <!-- FINAL LOCKED FILE -->
