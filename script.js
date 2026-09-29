@@ -466,10 +466,12 @@ function completeObjective1() {
     openView("objectives-view");
 
     setTimeout(function() {
-      openObjective(2);
-    }, 400);
 
-  }, 1000);
+      openObjective(2);
+
+    }, 700);
+
+  }, 1200);
 }
 
 function showSystemNotification(title, message) {
@@ -511,10 +513,38 @@ function activateObjective2() {
     "puzzle-active"
   );
 
+  shuffleConnectionColumn(
+    document.querySelector(".connection-left")
+  );
+
+  shuffleConnectionColumn(
+    document.querySelector(".connection-right")
+  );
+
   showSystemNotification(
     "OBJECTIVE #002 ACTIVE",
     "4 CONNECTIONS REQUIRED"
   );
+}
+
+function shuffleConnectionColumn(column) {
+
+  const cards = Array.from(
+    column.querySelectorAll(".connection-card")
+  );
+
+  for (let i = cards.length - 1; i > 0; i--) {
+
+    const j = Math.floor(Math.random() * (i + 1));
+
+    const temp = cards[i];
+    cards[i] = cards[j];
+    cards[j] = temp;
+  }
+
+  cards.forEach(function(card) {
+    column.appendChild(card);
+  });
 }
 
 function openObjective(number) {
@@ -535,7 +565,12 @@ function openObjective(number) {
 
   if (number === 2) {
 
-    if (!document.getElementById("objective-2-card").classList.contains("objective-active")) {
+    const objective2Card =
+      document.getElementById("objective-2-card");
+
+    if (
+      objective2Card.classList.contains("objective-locked")
+    ) {
       return;
     }
 
