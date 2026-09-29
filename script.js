@@ -851,9 +851,30 @@ function completeObjective3() {
     "objective-complete"
   );
 
+  document.getElementById("objective-3-progress").textContent =
+    "6 / 6 EVENTS VERIFIED";
+
   showSystemNotification(
     "ARCHIVE RECONSTRUCTED",
     "6 / 6 EVENTS VERIFIED"
   );
+
+  setTimeout(function() {
+
+    showSystemNotification(
+      "OBJECTIVE #003 COMPLETE",
+      "CLEARANCE: 100%"
+    );
+
+  }, 2500);
+
+  setTimeout(function() {
+
+    showSystemNotification(
+      "FINAL FILE UNLOCKED",
+      "CASE #999 DECLASSIFIED"
+    );
+
+  }, 5000);
 
 }
