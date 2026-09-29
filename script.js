@@ -1005,8 +1005,35 @@ function completeObjective3() {
     document.getElementById("final-case-status").textContent =
       "STATUS: DECLASSIFIED";
 
+document.getElementById("final-case-card").classList.remove(
+  "objective-locked"
+);
+
+document.getElementById("final-case-card").classList.add(
+  "objective-active"
+);
+
+document.getElementById("final-case-card-status").textContent =
+  "DECLASSIFIED";
+    
     openView("final-view");
 
   }, 4200);
 
+}
+function openFinalCase() {
+
+  const card = document.getElementById("final-case-card");
+
+  if (card.classList.contains("objective-locked")) {
+    return;
+  }
+
+  document.getElementById("final-case-title").textContent =
+    "🔓 CASE #999";
+
+  document.getElementById("final-case-status").textContent =
+    "STATUS: DECLASSIFIED";
+
+  openView("final-view");
 }
