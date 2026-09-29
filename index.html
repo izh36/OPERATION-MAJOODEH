@@ -13,68 +13,106 @@
 
 <body>
 
-  <!-- CLASSIFIED OPENING -->
-  <section id="classified-screen" class="screen active">
+ <!-- CLASSIFIED OPENING -->
+<section id="classified-screen" class="screen active">
 
-    <div class="terminal-noise"></div>
-    <div class="scanlines"></div>
+  <div class="binary-rain" aria-hidden="true"></div>
+  <div class="terminal-noise"></div>
+  <div class="scanlines"></div>
 
-    <div class="terminal">
+  <div class="classified-system-status">
+    <span>SECURE CHANNEL</span>
+    <span>ENCRYPTED</span>
+    <span>UNKNOWN DEVICE</span>
+  </div>
 
-      <div class="terminal-header">
-        <span>SECURE TERMINAL</span>
-        <span>ENCRYPTION: ACTIVE</span>
-      </div>
+  <div class="terminal">
 
-      <div class="terminal-body">
-
-        <div class="terminal-code">
-          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-        </div>
-
-        <div class="classified-stamp">
-          CLASSIFIED
-        </div>
-
-        <div class="file-info">
-          <div>
-            <span>FILE</span>
-            <strong>M-001</strong>
-          </div>
-
-          <div>
-            <span>SUBJECT</span>
-            <strong>MAJOODEH</strong>
-          </div>
-
-          <div>
-            <span>STATUS</span>
-            <strong>RESTRICTED</strong>
-          </div>
-
-          <div>
-            <span>CLEARANCE</span>
-            <strong id="terminal-clearance">0%</strong>
-          </div>
-        </div>
-
-        <div class="terminal-warning">
-          UNAUTHORIZED ACCESS WILL BE REPORTED.
-          <br>
-          CONTINUE ONLY IF YOU ACCEPT THE MISSION.
-        </div>
-
-        <div class="terminal-actions">
-          <button id="accept-btn">ACCEPT MISSION</button>
-          <button id="decline-btn" class="secondary-btn">DECLINE</button>
-        </div>
-
-        <div id="terminal-response"></div>
-
-      </div>
+    <div class="terminal-header">
+      <span>SECURE TERMINAL</span>
+      <span>ENCRYPTION: ACTIVE</span>
     </div>
 
-  </section>
+    <div class="terminal-body">
+
+      <div class="terminal-code">
+        ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+      </div>
+
+      <div class="classified-stamp">
+        CLASSIFIED
+      </div>
+
+      <div class="classified-system-warning">
+
+        <div>UNAUTHORIZED ACCESS DETECTED</div>
+        <div>IDENTITY: <strong>UNKNOWN</strong></div>
+        <div>CLEARANCE: <strong>0%</strong></div>
+
+      </div>
+
+      <div class="file-info">
+
+        <div>
+          <span>FILE</span>
+          <strong>M-001</strong>
+        </div>
+
+        <div>
+          <span>SUBJECT</span>
+          <strong>MAJOODEH</strong>
+        </div>
+
+        <div>
+          <span>STATUS</span>
+          <strong>RESTRICTED</strong>
+        </div>
+
+        <div>
+          <span>CLEARANCE</span>
+          <strong id="terminal-clearance">0%</strong>
+        </div>
+
+      </div>
+
+      <div class="terminal-warning">
+
+        UNAUTHORIZED ACCESS WILL BE REPORTED.
+        <br>
+        CONTINUE ONLY IF YOU ACCEPT THE MISSION.
+
+      </div>
+
+      <div class="terminal-response-lines">
+
+        <div>&gt; CONNECTION ESTABLISHED</div>
+        <div>&gt; TARGET IDENTIFIED</div>
+        <div>&gt; OPERATION READY</div>
+
+      </div>
+
+      <div class="operation-title">
+        OPERATION: MAJOODEH
+      </div>
+
+      <div class="terminal-actions">
+
+        <button id="accept-btn">
+          ACCEPT MISSION
+        </button>
+
+        <button id="decline-btn" class="secondary-btn">
+          DECLINE
+        </button>
+
+      </div>
+
+      <div id="terminal-response"></div>
+
+    </div>
+  </div>
+
+</section>
 
 
   <!-- PHONE -->
