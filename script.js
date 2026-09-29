@@ -367,19 +367,6 @@ let objective1Clues = {
   sunrise: false
 };
 
-function openObjective(number) {
-
-  if (number === 1) {
-    openView("objective-detail-view");
-
-    if (objective1Active) {
-      document.getElementById("activate-objective-btn").textContent =
-        "OBJECTIVE ACTIVE";
-
-      document.getElementById("activate-objective-btn").disabled = true;
-    }
-  }
-}
 
 function activateObjective1() {
 
