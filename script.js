@@ -1015,6 +1015,16 @@ document.getElementById("final-case-card").classList.add(
 
 document.getElementById("final-case-card-status").textContent =
   "DECLASSIFIED";
+
+document.getElementById("main-final-app").classList.remove(
+  "locked-app"
+);
+
+document.getElementById("main-final-icon").textContent =
+  "🔓";
+
+document.getElementById("main-final-label").textContent =
+  "CASE #999";
     
     openView("final-view");
 
