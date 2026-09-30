@@ -2569,3 +2569,113 @@ button {
   }
 
 }
+/* =========================================
+   THUNDERSTORM — MESSAGES & MEMORIES
+========================================= */
+
+#messages-view,
+#memories-view {
+  position: relative;
+  overflow: hidden;
+  background: #050709;
+}
+
+#messages-view > *,
+#memories-view > * {
+  position: relative;
+  z-index: 2;
+}
+
+.storm-overlay {
+  position: absolute !important;
+  inset: 0;
+
+  z-index: 1 !important;
+
+  pointer-events: none;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 9, 13, 0.55),
+      rgba(1, 4, 7, 0.82)
+    );
+
+  opacity: 1;
+}
+
+/* Rain */
+
+.storm-overlay::before {
+  content: "";
+
+  position: absolute;
+  inset: -100% 0;
+
+  background-image:
+    repeating-linear-gradient(
+      105deg,
+      transparent 0px,
+      transparent 8px,
+      rgba(130, 160, 175, 0.13) 9px,
+      transparent 10px,
+      transparent 17px
+    );
+
+  background-size: 24px 24px;
+
+  animation: stormRain 0.55s linear infinite;
+}
+
+@keyframes stormRain {
+
+  from {
+    transform: translateY(-20px);
+  }
+
+  to {
+    transform: translateY(40px);
+  }
+
+}
+
+/* Lightning */
+
+.storm-overlay::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: rgba(210, 225, 235, 0);
+
+  animation: stormLightning 8s infinite;
+}
+
+@keyframes stormLightning {
+
+  0%,
+  82%,
+  100% {
+    background: rgba(210, 225, 235, 0);
+  }
+
+  83% {
+    background: rgba(220, 235, 245, 0.12);
+  }
+
+  84% {
+    background: rgba(220, 235, 245, 0);
+  }
+
+  86% {
+    background: rgba(220, 235, 245, 0.2);
+  }
+
+  87% {
+    background: rgba(220, 235, 245, 0);
+  }
+
+}
