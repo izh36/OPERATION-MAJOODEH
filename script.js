@@ -1441,7 +1441,7 @@ function startCreepyPopups() {
 
   const messages = [
     "Are you okay BUBU??",
-    "Let's play game"
+    "Let's play a game"
   ];
 
   function showCreepyPopup() {
