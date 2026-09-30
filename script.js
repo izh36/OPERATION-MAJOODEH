@@ -1518,3 +1518,306 @@ if (document.readyState === "loading") {
   startCreepyPopups();
 
 }
+// =========================================
+// RANDOM THUNDERSTORM LIGHTNING
+// =========================================
+
+(function startRandomLightning() {
+
+  const stormViews = [
+    document.getElementById("messages-view"),
+    document.getElementById("memories-view")
+  ];
+
+  stormViews.forEach(function(view) {
+
+    if (!view) {
+      return;
+    }
+
+    const container =
+      view.querySelector(".storm-lightning-container");
+
+    const flash =
+      view.querySelector(".storm-flash");
+
+    if (!container || !flash) {
+      return;
+    }
+
+
+    function createLightningBolt() {
+
+      const bolt =
+        document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "svg"
+        );
+
+      bolt.classList.add("storm-bolt");
+
+      bolt.setAttribute(
+        "viewBox",
+        "0 0 100 600"
+      );
+
+      bolt.setAttribute(
+        "preserveAspectRatio",
+        "none"
+      );
+
+
+      const polyline =
+        document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "polyline"
+        );
+
+
+      // RANDOM LENGTH
+
+      const endY =
+        300 + Math.random() * 300;
+
+
+      // RANDOM START POSITION
+
+      let x = 35 + Math.random() * 30;
+
+      const points = [];
+
+      points.push(
+        x + ",0"
+      );
+
+
+      // RANDOM BOLT SEGMENTS
+
+      const segments =
+        5 + Math.floor(
+          Math.random() * 5
+        );
+
+
+      const segmentHeight =
+        endY / segments;
+
+
+      for (
+        let i = 1;
+        i <= segments;
+        i++
+      ) {
+
+        x +=
+          (Math.random() - 0.5) * 30;
+
+        x =
+          Math.max(
+            8,
+            Math.min(
+              92,
+              x
+            )
+          );
+
+
+        points.push(
+          x +
+          "," +
+          (segmentHeight * i)
+        );
+
+
+        // OCCASIONAL SECONDARY BRANCH
+
+        if (
+          Math.random() < 0.25 &&
+          i < segments - 1
+        ) {
+
+          const branchX =
+            x +
+            (Math.random() > 0.5
+              ? 12
+              : -12);
+
+          const branchY =
+            segmentHeight * i +
+            segmentHeight * 0.45;
+
+
+          points.push(
+            branchX +
+            "," +
+            branchY
+          );
+
+          points.push(
+            x +
+            "," +
+            (segmentHeight * (i + 0.15))
+          );
+
+        }
+
+      }
+
+
+      polyline.setAttribute(
+        "points",
+        points.join(" ")
+      );
+
+
+      // TWO YELLOW SHADES
+
+      const yellow =
+        Math.random() < 0.5
+          ? "#ffd84a"
+          : "#ffb52e";
+
+
+      polyline.style.stroke =
+        yellow;
+
+
+      bolt.appendChild(
+        polyline
+      );
+
+
+      // RANDOM HORIZONTAL POSITION
+
+      const position =
+        5 + Math.random() * 90;
+
+
+      // RANDOM ANGLE
+
+      const angle =
+        -22 + Math.random() * 44;
+
+
+      // RANDOM SCALE
+
+      const scale =
+        0.65 + Math.random() * 0.7;
+
+
+      bolt.style.left =
+        position + "%";
+
+
+      bolt.style.transform =
+        "translateX(-50%) " +
+        "rotate(" +
+        angle +
+        "deg) " +
+        "scale(" +
+        scale +
+        ")";
+
+
+      container.appendChild(
+        bolt
+      );
+
+
+      // STRIKE
+
+      requestAnimationFrame(function() {
+
+        bolt.style.opacity = "1";
+
+        flash.style.opacity =
+          "0.12";
+
+        setTimeout(function() {
+
+          bolt.style.opacity = "0";
+
+          flash.style.opacity =
+            "0";
+
+        }, 90);
+
+
+        // SECONDARY FLASH
+
+        setTimeout(function() {
+
+          bolt.style.opacity =
+            "0.9";
+
+          flash.style.opacity =
+            "0.18";
+
+        }, 130);
+
+
+        setTimeout(function() {
+
+          bolt.style.opacity =
+            "0";
+
+          flash.style.opacity =
+            "0";
+
+        }, 210);
+
+
+        // REMOVE OLD BOLT
+
+        setTimeout(function() {
+
+          bolt.remove();
+
+        }, 500);
+
+      });
+
+    }
+
+
+    function scheduleLightning() {
+
+      const delay =
+        4000 +
+        Math.random() * 9000;
+
+
+      setTimeout(function() {
+
+        // Sometimes create a single strike
+
+        createLightningBolt();
+
+
+        // Sometimes create a nearby secondary bolt
+
+        if (
+          Math.random() < 0.25
+        ) {
+
+          setTimeout(function() {
+
+            createLightningBolt();
+
+          }, 180 + Math.random() * 280);
+
+        }
+
+
+        scheduleLightning();
+
+      }, delay);
+
+    }
+
+
+    scheduleLightning();
+
+  });
+
+})();
