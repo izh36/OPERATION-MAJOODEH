@@ -2740,135 +2740,287 @@ button {
 
 }
 /* =========================================
-   OBJECTIVE — HORROR MASK
+   OBJECTIVE — DIGITAL MASK
 ========================================= */
 
 .objective-mask-wrap {
   width: 100%;
+
   display: flex;
   justify-content: center;
   align-items: center;
 
-  margin-top: 18px;
-  margin-bottom: 12px;
+  margin-top: 22px;
+  margin-bottom: 14px;
 
   pointer-events: none;
 
   position: relative;
   z-index: 2;
-
-  overflow: hidden;
-}
-
-.objective-mask {
-  display: block;
-
-  width: 150px;
-  max-width: 48%;
-
-  height: auto;
-
-  opacity: 0.78;
-
-  filter:
-    grayscale(1)
-    contrast(1.25)
-    brightness(0.72)
-    drop-shadow(0 0 8px rgba(0,0,0,0.8));
-
-  transform:
-    translateY(8px)
-    scale(0.96);
-
-  animation:
-    objectiveMaskReveal 1.8s ease-out forwards,
-    objectiveMaskFlicker 6s steps(1) infinite;
-
-  will-change: transform, opacity, filter;
 }
 
 
 /* =========================================
-   MASK REVEAL
+   MASK STRUCTURE
 ========================================= */
 
-@keyframes objectiveMaskReveal {
+.objective-mask {
+  position: relative;
+
+  width: 190px;
+
+  padding: 8px 12px 10px;
+
+  font-family: "Courier New", monospace;
+
+  color: #68736b;
+
+  text-align: center;
+
+  opacity: 0.7;
+
+  filter:
+    contrast(1.2)
+    brightness(0.75);
+
+  animation:
+    maskAppear 1.5s ease-out forwards,
+    maskGlitch 7s steps(1) infinite;
+}
+
+
+/* =========================================
+   TOP / BOTTOM DIGITAL NOISE
+========================================= */
+
+.mask-top,
+.mask-bottom {
+  font-size: 7px;
+
+  letter-spacing: 2px;
+
+  color: #435047;
+
+  opacity: 0.7;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   MASK FACE
+========================================= */
+
+.mask-face {
+  position: relative;
+
+  margin: 5px auto;
+
+  width: 150px;
+  height: 145px;
+
+  border:
+    1px solid rgba(120, 135, 125, 0.25);
+
+  border-radius:
+    48% 48% 44% 44%;
+
+  background:
+    rgba(90, 100, 92, 0.06);
+
+  box-shadow:
+    inset 0 0 25px rgba(0,0,0,0.65),
+    0 0 12px rgba(0,0,0,0.35);
+}
+
+
+/* =========================================
+   EYES
+========================================= */
+
+.mask-eyes {
+  position: absolute;
+
+  top: 32px;
+  left: 0;
+  right: 0;
+
+  display: flex;
+
+  justify-content: space-around;
+
+  padding: 0 28px;
+}
+
+.mask-eyes span {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 31px;
+  height: 23px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(0,0,0,0.72);
+
+  color: #151a17;
+
+  font-size: 12px;
+
+  box-shadow:
+    inset 0 0 7px rgba(0,0,0,0.9);
+}
+
+
+/* =========================================
+   SNOUT
+========================================= */
+
+.mask-snout {
+  position: absolute;
+
+  top: 67px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  color: #59635c;
+
+  font-size: 14px;
+}
+
+.mask-snout strong {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 29px;
+
+  border-radius: 45%;
+
+  background:
+    rgba(0,0,0,0.6);
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+
+  color: #171c19;
+}
+
+
+/* =========================================
+   MOUTH / CORRUPTED DATA
+========================================= */
+
+.mask-mouth {
+  position: absolute;
+
+  bottom: 27px;
+
+  left: 0;
+  right: 0;
+
+  font-size: 7px;
+
+  letter-spacing: 2px;
+
+  color: #4e5951;
+
+  opacity: 0.7;
+}
+
+
+/* =========================================
+   DIGITAL FLICKER
+========================================= */
+
+@keyframes maskAppear {
 
   0% {
     opacity: 0;
+
     transform:
-      translateY(18px)
-      scale(0.88);
+      translateY(12px)
+      scale(0.9);
+
     filter:
-      grayscale(1)
-      contrast(1.5)
-      brightness(0.25)
+      brightness(0.2)
       blur(3px);
   }
 
   60% {
-    opacity: 0.55;
+    opacity: 0.5;
+
     transform:
-      translateY(3px)
-      scale(0.98);
+      translateY(-2px)
+      scale(1);
   }
 
   100% {
-    opacity: 0.78;
+    opacity: 0.7;
+
     transform:
       translateY(0)
-      scale(0.96);
+      scale(1);
+
     filter:
-      grayscale(1)
-      contrast(1.25)
-      brightness(0.72)
-      drop-shadow(0 0 8px rgba(0,0,0,0.8));
+      contrast(1.2)
+      brightness(0.75);
   }
 
 }
 
 
-/* =========================================
-   SUBTLE MASK GLITCH
-========================================= */
-
-@keyframes objectiveMaskFlicker {
+@keyframes maskGlitch {
 
   0%,
-  86%,
+  84%,
   100% {
-    opacity: 0.78;
+    opacity: 0.7;
+
     transform:
-      translateY(0)
-      scale(0.96);
+      translateX(0);
+  }
+
+  85% {
+    opacity: 0.35;
+
+    transform:
+      translateX(-2px);
+  }
+
+  86% {
+    opacity: 0.85;
+
+    transform:
+      translateX(2px);
   }
 
   87% {
-    opacity: 0.42;
+    opacity: 0.45;
+
     transform:
-      translate(-2px, 0)
-      scale(0.965);
+      translateX(-1px);
   }
 
   88% {
-    opacity: 0.82;
-    transform:
-      translate(2px, 0)
-      scale(0.955);
-  }
+    opacity: 0.7;
 
-  89% {
-    opacity: 0.5;
     transform:
-      translate(-1px, 1px)
-      scale(0.96);
-  }
-
-  90% {
-    opacity: 0.78;
-    transform:
-      translateY(0)
-      scale(0.96);
+      translateX(0);
   }
 
 }
@@ -2881,13 +3033,17 @@ button {
 @media (max-width: 600px) {
 
   .objective-mask-wrap {
-    margin-top: 14px;
+    margin-top: 16px;
     margin-bottom: 8px;
   }
 
   .objective-mask {
-    width: 125px;
-    max-width: 42%;
+    width: 165px;
+  }
+
+  .mask-face {
+    width: 135px;
+    height: 130px;
   }
 
 }
