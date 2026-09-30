@@ -261,11 +261,15 @@ document.getElementById("detail-back").addEventListener("click", function() {
 // MESSAGE DETAILS
 // ================================
 
+let detailBackView = "home-view";
+
 document.querySelectorAll(".message-item").forEach(function(item) {
 
-  item.addEventListener("click", function() {
+ item.addEventListener("click", function() {
 
-    const id = item.dataset.message;
+  detailBackView = "messages-view";
+
+  const id = item.dataset.message;
     const message = messages[id];
 
     document.getElementById("detail-title").textContent =
@@ -325,9 +329,11 @@ document.querySelectorAll(".message-item").forEach(function(item) {
 
 document.querySelectorAll(".memory-item").forEach(function(item) {
 
-  item.addEventListener("click", function() {
+ item.addEventListener("click", function() {
 
-    const id = item.dataset.memory;
+  detailBackView = "memories-view";
+
+  const id = item.dataset.memory;
     const memory = memories[id];
 
     document.getElementById("detail-title").textContent =
