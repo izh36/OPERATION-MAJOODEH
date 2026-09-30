@@ -1427,7 +1427,7 @@ function updateClearance(percent) {
 // RANDOM CREEPY POPUPS
 // =========================================
 
-(function startCreepyPopup() {
+function startCreepyPopups() {
 
   const popup =
     document.getElementById("creepy-popup");
@@ -1440,63 +1440,88 @@ function updateClearance(percent) {
   }
 
   const messages = [
-    "are you okay bubu??",
-    "Let's play a game"
+    "Are you okay BUBU??",
+    "Let's play game"
   ];
 
   function showCreepyPopup() {
 
-    const message =
+    const randomMessage =
       messages[
         Math.floor(
           Math.random() * messages.length
         )
       ];
 
-    popup.textContent = message;
+    popup.textContent =
+      randomMessage;
 
-    /*
-      Keep the popup inside the home screen.
-      These values leave room around the edges
-      so it doesn't get clipped.
-    */
+    const randomX =
+      25 + Math.random() * 50;
 
-    const x =
-      20 + Math.random() * 60;
+    const randomY =
+      58 + Math.random() * 25;
 
-    const y =
-      48 + Math.random() * 35;
+    popup.style.left =
+      randomX + "%";
 
-    popup.style.left = x + "%";
-    popup.style.top = y + "%";
+    popup.style.top =
+      randomY + "%";
 
     popup.classList.remove("show");
-
-    /*
-      Force the animation to restart.
-    */
 
     void popup.offsetWidth;
 
     popup.classList.add("show");
 
-  }
-
-  function schedulePopup() {
-
-    const delay =
-      6500 + Math.random() * 10000;
-
     setTimeout(function() {
 
-      showCreepyPopup();
+      popup.classList.remove("show");
 
-      schedulePopup();
-
-    }, delay);
+    }, 750);
 
   }
 
-  schedulePopup();
 
-})();
+  /*
+    First popup.
+    This should appear 3 seconds
+    after the phone screen is available.
+  */
+
+  setTimeout(function() {
+
+    showCreepyPopup();
+
+  }, 3000);
+
+
+  /*
+    Keep generating random popups.
+  */
+
+  setInterval(function() {
+
+    showCreepyPopup();
+
+  }, 7000 + Math.random() * 5000);
+
+}
+
+
+/*
+  Start once the page has loaded.
+*/
+
+if (document.readyState === "loading") {
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    startCreepyPopups
+  );
+
+} else {
+
+  startCreepyPopups();
+
+}
