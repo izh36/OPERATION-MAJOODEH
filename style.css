@@ -1937,3 +1937,450 @@ button {
   }
 
 }
+/* =========================================
+   PHONE HOME — COMPROMISED STATUS
+========================================= */
+
+#home-view .phone-title {
+  animation: deviceFlicker 4.5s infinite;
+}
+
+#home-view .phone-title span {
+  animation: deviceLabelFlicker 3.2s infinite;
+}
+
+#home-view .phone-title strong {
+  animation: majoodehFlicker 5.1s infinite;
+}
+
+#home-view .clearance-box {
+  animation: clearanceFlicker 3.8s infinite;
+}
+
+#home-view .operation-banner {
+  animation: operationFlicker 4.2s infinite;
+}
+
+
+/* SECURE DEVICE */
+
+@keyframes deviceFlicker {
+
+  0%, 88%, 100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  89% {
+    opacity: 0.35;
+    transform: translateX(-1px);
+  }
+
+  90% {
+    opacity: 0.9;
+    transform: translateX(2px);
+  }
+
+  91% {
+    opacity: 0.45;
+    transform: translateX(-1px);
+  }
+
+  92% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+}
+
+
+/* MAJOODEH */
+
+@keyframes majoodehFlicker {
+
+  0%, 82%, 100% {
+    opacity: 1;
+    text-shadow: none;
+  }
+
+  83% {
+    opacity: 0.3;
+    text-shadow:
+      -2px 0 rgba(255,255,255,0.5),
+      2px 0 rgba(80,255,120,0.5);
+  }
+
+  84% {
+    opacity: 1;
+    text-shadow:
+      2px 0 rgba(255,255,255,0.4);
+  }
+
+  85% {
+    opacity: 0.55;
+    text-shadow: none;
+  }
+
+  86% {
+    opacity: 1;
+  }
+
+}
+
+
+/* CLEARANCE */
+
+@keyframes clearanceFlicker {
+
+  0%, 91%, 100% {
+    opacity: 1;
+  }
+
+  92% {
+    opacity: 0.25;
+  }
+
+  93% {
+    opacity: 0.8;
+  }
+
+  94% {
+    opacity: 0.35;
+  }
+
+  95% {
+    opacity: 1;
+  }
+
+}
+
+
+/* OPERATION STATUS */
+
+@keyframes operationFlicker {
+
+  0%, 86%, 100% {
+    opacity: 1;
+  }
+
+  87% {
+    opacity: 0.25;
+  }
+
+  88% {
+    opacity: 0.9;
+  }
+
+  89% {
+    opacity: 0.4;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+}
+/* =========================================
+   PHONE HOME — STRANGE APP BEHAVIOURS
+========================================= */
+
+#home-view .app {
+  position: relative;
+  overflow: visible;
+}
+
+/* Strange text that appears over an app */
+
+#home-view .app.strange-active::after {
+  content: attr(data-strange);
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+
+  white-space: nowrap;
+
+  font-family: "Courier New", monospace;
+  font-size: 7px;
+  letter-spacing: 1px;
+
+  color: #7cff91;
+
+  opacity: 0.85;
+
+  text-shadow:
+    0 0 7px rgba(70,255,100,0.5);
+
+  pointer-events: none;
+
+  animation: strangeTextGlitch 0.35s steps(2);
+}
+
+@keyframes strangeTextGlitch {
+
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateX(-4px);
+  }
+
+  40% {
+    opacity: 1;
+    transform: translateX(-50%) translateX(3px);
+  }
+
+  70% {
+    opacity: 0.5;
+    transform: translateX(-50%) translateX(-2px);
+  }
+
+  100% {
+    opacity: 0.85;
+    transform: translateX(-50%);
+  }
+
+}
+
+
+/* =========================================
+   MESSAGE APP
+   Occasionally receives a message that
+   doesn't actually exist.
+========================================= */
+
+#home-view .app.app-strange-message {
+  animation: strangeMessage 0.5s steps(2);
+}
+
+@keyframes strangeMessage {
+
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-2px);
+  }
+
+  50% {
+    transform: translateX(3px);
+  }
+
+  75% {
+    transform: translateX(-1px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+
+}
+
+
+/* =========================================
+   MEMORIES
+   Eye / surveillance effect
+========================================= */
+
+#home-view .app.app-strange-memory .app-icon {
+  animation: memoryEye 0.8s steps(2);
+}
+
+@keyframes memoryEye {
+
+  0%, 100% {
+    opacity: 1;
+  }
+
+  20% {
+    opacity: 0.15;
+  }
+
+  35% {
+    opacity: 1;
+  }
+
+  55% {
+    opacity: 0.25;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+}
+
+
+/* =========================================
+   OBJECTS
+   Corruption effect
+========================================= */
+
+#home-view .app.app-strange-object {
+  animation: objectCorruption 0.65s steps(2);
+}
+
+@keyframes objectCorruption {
+
+  0% {
+    transform: translate(0,0);
+    filter: none;
+  }
+
+  25% {
+    transform: translate(-2px,1px);
+    filter: brightness(1.7);
+  }
+
+  50% {
+    transform: translate(3px,-1px);
+    filter: contrast(1.5);
+  }
+
+  75% {
+    transform: translate(-1px,0);
+    filter: brightness(0.7);
+  }
+
+  100% {
+    transform: translate(0,0);
+    filter: none;
+  }
+
+}
+
+
+/* =========================================
+   OBJECTIVES
+   Tracking effect
+========================================= */
+
+#home-view .app.app-strange-objective {
+  animation: objectiveTracking 0.7s steps(2);
+}
+
+@keyframes objectiveTracking {
+
+  0%, 100% {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(2px);
+  }
+
+  40% {
+    transform: translateX(-3px);
+  }
+
+  60% {
+    transform: translateX(2px);
+  }
+
+  80% {
+    transform: translateX(-1px);
+  }
+
+}
+
+
+/* =========================================
+   OPERATION SUNRISE
+   Signal interference
+========================================= */
+
+#home-view .app.app-sunrise-glitch .app-icon {
+  animation: sunriseSignal 1s steps(3);
+}
+
+@keyframes sunriseSignal {
+
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  20% {
+    opacity: 0.2;
+    transform: scale(0.85);
+  }
+
+  35% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+
+  55% {
+    opacity: 0.35;
+    transform: scale(0.92);
+  }
+
+  75% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+}
+
+
+/* =========================================
+   CASE #999
+   Someone appears to be accessing it
+========================================= */
+
+#home-view .app.app-final-glitch {
+  animation: finalAccess 0.9s steps(3);
+}
+
+@keyframes finalAccess {
+
+  0% {
+    opacity: 1;
+  }
+
+  15% {
+    opacity: 0.25;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  45% {
+    opacity: 0.35;
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 0.2;
+  }
+
+  100% {
+    opacity: 1;
+  }
+
+}
+
+
+/* =========================================
+   ESCALATION
+   Weirdness gets stronger as clearance rises
+========================================= */
+
+#home-view.apps-compromised .app-icon {
+  transition:
+    filter 0.2s ease,
+    opacity 0.2s ease;
+}
+
+#home-view.apps-compromised .app:hover .app-icon {
+  filter:
+    drop-shadow(0 0 5px rgba(80,255,110,0.5));
+}
