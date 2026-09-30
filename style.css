@@ -2598,10 +2598,7 @@ button {
 .storm-overlay {
   position: absolute !important;
 
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  inset: 0;
 
   z-index: 1 !important;
 
@@ -2631,7 +2628,7 @@ button {
   width: 180%;
   height: 240%;
 
-  opacity: 0.45;
+  opacity: 0.42;
 
   background-image:
     repeating-linear-gradient(
@@ -2645,11 +2642,10 @@ button {
 
   background-size: 26px 26px;
 
-  animation: stormRain 0.75s linear infinite;
+  animation: stormRain 0.8s linear infinite;
 
   will-change: transform;
 }
-
 
 @keyframes stormRain {
 
@@ -2665,40 +2661,43 @@ button {
 
 
 /* =========================================
-   LIGHTNING BOLT
+   RANDOM LIGHTNING
 ========================================= */
+
+.storm-lightning-container {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 1;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
 
 .storm-bolt {
   position: absolute;
 
   top: -5%;
-  left: 50%;
 
-  width: 55%;
-  height: 110%;
+  width: 120px;
 
-  transform:
-    translateX(-50%)
-    scaleX(0.7);
+  height: 100%;
 
   overflow: visible;
 
   opacity: 0;
 
-  filter:
-    drop-shadow(0 0 4px rgba(220, 240, 255, 0.95))
-    drop-shadow(0 0 12px rgba(170, 210, 255, 0.65));
+  transform-origin: top center;
 
-  animation: thunderbolt 7s infinite;
+  pointer-events: none;
 
   will-change: opacity, transform;
 }
 
-
 .storm-bolt polyline {
   fill: none;
-
-  stroke: rgba(225, 240, 255, 0.95);
 
   stroke-width: 3;
 
@@ -2709,101 +2708,19 @@ button {
   vector-effect: non-scaling-stroke;
 }
 
-
-/* =========================================
-   LIGHTNING FLASH
-========================================= */
-
 .storm-flash {
   position: absolute;
 
   inset: 0;
 
-  background: rgba(215, 235, 255, 0);
+  z-index: 0;
+
+  background:
+    rgba(255, 220, 90, 0);
 
   opacity: 0;
 
-  animation: stormFlash 7s infinite;
-
-  will-change: opacity;
-}
-
-
-/* =========================================
-   THUNDERBOLT ANIMATION
-========================================= */
-
-@keyframes thunderbolt {
-
-  0%,
-  78%,
-  100% {
-    opacity: 0;
-
-    transform:
-      translateX(-50%)
-      scaleX(0.7);
-  }
-
-  80% {
-    opacity: 1;
-
-    transform:
-      translateX(-50%)
-      scaleX(0.72);
-  }
-
-  81% {
-    opacity: 0;
-
-    transform:
-      translateX(-50%)
-      scaleX(0.72);
-  }
-
-  82% {
-    opacity: 0.95;
-
-    transform:
-      translateX(-50%)
-      scaleX(0.7);
-  }
-
-  84% {
-    opacity: 0;
-  }
-
-}
-
-
-/* =========================================
-   SKY FLASH
-========================================= */
-
-@keyframes stormFlash {
-
-  0%,
-  78%,
-  100% {
-    opacity: 0;
-  }
-
-  80% {
-    opacity: 0.18;
-  }
-
-  81% {
-    opacity: 0;
-  }
-
-  82% {
-    opacity: 0.28;
-  }
-
-  84% {
-    opacity: 0;
-  }
-
+  pointer-events: none;
 }
 
 
@@ -2813,20 +2730,12 @@ button {
 
 @media (max-width: 600px) {
 
-  .storm-rain {
-    opacity: 0.5;
-
-    animation-duration: 0.8s;
+  .storm-bolt {
+    width: 90px;
   }
 
-  .storm-bolt {
-    width: 70%;
-
-    height: 110%;
-
-    filter:
-      drop-shadow(0 0 3px rgba(220, 240, 255, 0.95))
-      drop-shadow(0 0 9px rgba(170, 210, 255, 0.65));
+  .storm-bolt polyline {
+    stroke-width: 2.5;
   }
 
 }
