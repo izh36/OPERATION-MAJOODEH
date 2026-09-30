@@ -1423,3 +1423,44 @@ function updateClearance(percent) {
   }
 
 })();
+// =========================================
+// CREEPY "ARE YOU OKAY??" POPUP
+// =========================================
+
+(function startCreepyPopup() {
+
+  const popup =
+    document.getElementById("creepy-popup");
+
+  if (!popup) {
+    return;
+  }
+
+  function showCreepyPopup() {
+
+    popup.classList.remove("show");
+
+    void popup.offsetWidth;
+
+    popup.classList.add("show");
+
+  }
+
+  function schedulePopup() {
+
+    const delay =
+      7000 + Math.random() * 10000;
+
+    setTimeout(function() {
+
+      showCreepyPopup();
+
+      schedulePopup();
+
+    }, delay);
+
+  }
+
+  schedulePopup();
+
+})();
