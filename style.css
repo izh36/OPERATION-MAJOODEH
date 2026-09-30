@@ -2404,7 +2404,7 @@ button {
 
   z-index: 0;
 
-  opacity: 0.22;
+  opacity: 0.38;
 
   mask-image: linear-gradient(
     to bottom,
@@ -2439,7 +2439,7 @@ button {
   font-size: 9px;
   line-height: 1;
 
-  color: #1d6b2c;
+  color: #14521f;
 
   text-shadow:
     0 0 5px rgba(50,255,80,0.25);
