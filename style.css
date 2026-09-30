@@ -2384,3 +2384,99 @@ button {
   filter:
     drop-shadow(0 0 5px rgba(80,255,110,0.5));
 }
+/* =========================================
+   HOME SCREEN — BINARY RAIN
+========================================= */
+
+#home-view {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Matrix layer */
+
+.home-binary-rain {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+  pointer-events: none;
+
+  z-index: 0;
+
+  opacity: 0.22;
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 12%,
+    black 88%,
+    transparent 100%
+  );
+
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 12%,
+    black 88%,
+    transparent 100%
+  );
+}
+
+/* Individual streams */
+
+.home-binary-column {
+  position: absolute;
+
+  top: -180px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  line-height: 1;
+
+  color: #1d6b2c;
+
+  text-shadow:
+    0 0 5px rgba(50,255,80,0.25);
+
+  animation:
+    homeBinaryFall linear infinite;
+}
+
+.home-binary-column span {
+  opacity: 0.35;
+}
+
+.home-binary-column span:nth-child(6n) {
+  color: #5dff78;
+  opacity: 0.8;
+}
+
+.home-binary-column span:nth-child(11n) {
+  opacity: 0.12;
+}
+
+@keyframes homeBinaryFall {
+
+  0% {
+    transform: translateY(-10%);
+  }
+
+  100% {
+    transform: translateY(125vh);
+  }
+
+}
+
+
+/* Put the actual phone content above the Matrix */
+
+#home-view > *:not(.home-binary-rain) {
+  position: relative;
+  z-index: 2;
+}
