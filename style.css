@@ -2488,9 +2488,9 @@ button {
 ========================================= */
 
 #creepy-popup {
-  position: absolute;
+  position: absolute !important;
 
-  z-index: 20;
+  z-index: 9999 !important;
 
   padding: 7px 12px;
 
@@ -2510,12 +2510,15 @@ button {
 
   opacity: 0;
 
+  visibility: hidden;
+    
   pointer-events: none;
 
   white-space: nowrap;
 }
 
 #creepy-popup.show {
+  visibility: visible;
   animation: creepyPopup 0.75s steps(2) forwards;
 }
 
