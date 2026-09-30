@@ -1783,8 +1783,8 @@ if (document.readyState === "loading") {
     function scheduleLightning() {
 
       const delay =
-        4000 +
-        Math.random() * 9000;
+        1100 +
+        Math.random() * 2700;
 
 
       setTimeout(function() {
