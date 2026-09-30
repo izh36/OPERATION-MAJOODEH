@@ -1733,14 +1733,14 @@ if (document.readyState === "loading") {
         flash.style.opacity =
           "0.12";
 
-        setTimeout(function() {
+       setTimeout(function() {
 
-          bolt.style.opacity = "0";
+  bolt.style.opacity = "0";
 
-          flash.style.opacity =
-            "0";
+  flash.style.opacity =
+    "0";
 
-        }, 90);
+}, 70);
 
 
         // SECONDARY FLASH
@@ -1753,7 +1753,7 @@ if (document.readyState === "loading") {
           flash.style.opacity =
             "0.18";
 
-        }, 130);
+        }, 100);
 
 
         setTimeout(function() {
@@ -1764,7 +1764,7 @@ if (document.readyState === "loading") {
           flash.style.opacity =
             "0";
 
-        }, 210);
+        }, 170);
 
 
         // REMOVE OLD BOLT
@@ -1782,9 +1782,12 @@ if (document.readyState === "loading") {
 
     function scheduleLightning() {
 
-      const delay =
-        1100 +
-        Math.random() * 2700;
+      const isMobile =
+  window.matchMedia("(max-width: 600px)").matches;
+
+const delay = isMobile
+  ? 700 + Math.random() * 1300
+  : 1200 + Math.random() * 2800;
 
 
       setTimeout(function() {
@@ -1796,9 +1799,9 @@ if (document.readyState === "loading") {
 
         // Sometimes create a nearby secondary bolt
 
-        if (
-          Math.random() < 0.25
-        ) {
+       if (
+  Math.random() < (isMobile ? 0.38 : 0.25)
+) {
 
           setTimeout(function() {
 
