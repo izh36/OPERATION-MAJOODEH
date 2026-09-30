@@ -1478,7 +1478,7 @@ function startCreepyPopups() {
 
       popup.classList.remove("show");
 
-    }, 750);
+    }, 1250);
 
   }
 
