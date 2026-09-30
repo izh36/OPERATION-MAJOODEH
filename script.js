@@ -1367,3 +1367,59 @@ function updateClearance(percent) {
   }, 3500);
 
 })();
+// =========================================
+// HOME SCREEN — BINARY RAIN
+// =========================================
+
+(function createHomeBinaryRain() {
+
+  const rain =
+    document.querySelector(".home-binary-rain");
+
+  if (!rain) {
+    return;
+  }
+
+  const columnCount = 18;
+
+  for (let i = 0; i < columnCount; i++) {
+
+    const column =
+      document.createElement("div");
+
+    column.className =
+      "home-binary-column";
+
+    column.style.left =
+      (i / columnCount * 100) + "%";
+
+    column.style.animationDuration =
+      (11 + Math.random() * 12) + "s";
+
+    column.style.animationDelay =
+      (-Math.random() * 14) + "s";
+
+    const length =
+      16 + Math.floor(
+        Math.random() * 20
+      );
+
+    for (let j = 0; j < length; j++) {
+
+      const bit =
+        document.createElement("span");
+
+      bit.textContent =
+        Math.random() > 0.5
+          ? "1"
+          : "0";
+
+      column.appendChild(bit);
+
+    }
+
+    rain.appendChild(column);
+
+  }
+
+})();
