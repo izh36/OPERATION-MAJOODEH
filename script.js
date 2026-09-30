@@ -1480,7 +1480,7 @@ function startCreepyPopups() {
 
       popup.classList.remove("show");
 
-    }, 1250);
+    }, 1500);
 
     setTimeout(function() {
 
