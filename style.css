@@ -2519,7 +2519,7 @@ button {
 
 #creepy-popup.show {
   visibility: visible;
-   animation: creepyPopup 1.25s steps(2) forwards;
+   animation: creepyPopup 1.5s steps(2) forwards;
 }
 
 @keyframes creepyPopup {
