@@ -1101,3 +1101,269 @@ function updateClearance(percent) {
   document.getElementById("phone-clearance").textContent =
     percent + "%";
 }
+// =========================================
+// PHONE HOME — STRANGE APP BEHAVIOURS
+// =========================================
+
+(function startStrangePhoneBehaviour() {
+
+  const home = document.getElementById("home-view");
+
+  if (!home) {
+    return;
+  }
+
+  const apps = Array.from(
+    home.querySelectorAll(".app")
+  );
+
+  if (apps.length < 6) {
+    return;
+  }
+
+  const messageApp = apps[0];
+  const memoryApp = apps[1];
+  const objectApp = apps[2];
+  const objectiveApp = apps[3];
+  const sunriseApp = apps[4];
+  const finalApp = apps[5];
+
+
+  // -----------------------------------------
+  // MESSAGE — phantom notification
+  // -----------------------------------------
+
+  function strangeMessage() {
+
+    messageApp.classList.add(
+      "app-strange-message",
+      "strange-active"
+    );
+
+    messageApp.dataset.strange =
+      "1 NEW MESSAGE";
+
+    setTimeout(function() {
+
+      messageApp.classList.remove(
+        "app-strange-message",
+        "strange-active"
+      );
+
+      delete messageApp.dataset.strange;
+
+    }, 900);
+
+  }
+
+
+  // -----------------------------------------
+  // MEMORIES — the eye
+  // -----------------------------------------
+
+  function strangeMemory() {
+
+    const icon =
+      memoryApp.querySelector(".app-icon");
+
+    if (!icon) {
+      return;
+    }
+
+    const original =
+      icon.textContent;
+
+    memoryApp.classList.add(
+      "app-strange-memory"
+    );
+
+    icon.textContent = "👁";
+
+    memoryApp.classList.add(
+      "strange-active"
+    );
+
+    memoryApp.dataset.strange =
+      "YOU REMEMBER";
+
+    setTimeout(function() {
+
+      icon.textContent = original;
+
+      memoryApp.classList.remove(
+        "app-strange-memory",
+        "strange-active"
+      );
+
+      delete memoryApp.dataset.strange;
+
+    }, 850);
+
+  }
+
+
+  // -----------------------------------------
+  // OBJECTS — corrupted archive
+  // -----------------------------------------
+
+  function strangeObject() {
+
+    objectApp.classList.add(
+      "app-strange-object",
+      "strange-active"
+    );
+
+    objectApp.dataset.strange =
+      "ARCHIVE CORRUPTED";
+
+    setTimeout(function() {
+
+      objectApp.classList.remove(
+        "app-strange-object",
+        "strange-active"
+      );
+
+      delete objectApp.dataset.strange;
+
+    }, 800);
+
+  }
+
+
+  // -----------------------------------------
+  // OBJECTIVES — tracking
+  // -----------------------------------------
+
+  function strangeObjective() {
+
+    objectiveApp.classList.add(
+      "app-strange-objective",
+      "strange-active"
+    );
+
+    objectiveApp.dataset.strange =
+      "TRACKING...";
+
+    setTimeout(function() {
+
+      objectiveApp.classList.remove(
+        "app-strange-objective",
+        "strange-active"
+      );
+
+      delete objectiveApp.dataset.strange;
+
+    }, 850);
+
+  }
+
+
+  // -----------------------------------------
+  // SUNRISE — signal interference
+  // -----------------------------------------
+
+  function strangeSunrise() {
+
+    const icon =
+      sunriseApp.querySelector(".app-icon");
+
+    if (!icon) {
+      return;
+    }
+
+    const original =
+      icon.textContent;
+
+    sunriseApp.classList.add(
+      "app-sunrise-glitch"
+    );
+
+    icon.textContent = "☀︎";
+
+    setTimeout(function() {
+
+      icon.textContent = original;
+
+      sunriseApp.classList.remove(
+        "app-sunrise-glitch"
+      );
+
+    }, 950);
+
+  }
+
+
+  // -----------------------------------------
+  // CASE #999 — unauthorized access
+  // -----------------------------------------
+
+  function strangeFinal() {
+
+    finalApp.classList.add(
+      "app-final-glitch",
+      "strange-active"
+    );
+
+    finalApp.dataset.strange =
+      "ACCESSING...";
+
+    setTimeout(function() {
+
+      finalApp.classList.remove(
+        "app-final-glitch",
+        "strange-active"
+      );
+
+      delete finalApp.dataset.strange;
+
+    }, 1100);
+
+  }
+
+
+  // -----------------------------------------
+  // Random event scheduler
+  // -----------------------------------------
+
+  function scheduleStrangeEvent() {
+
+    const events = [
+      strangeMessage,
+      strangeMemory,
+      strangeObject,
+      strangeObjective,
+      strangeSunrise,
+      strangeFinal
+    ];
+
+    const event =
+      events[
+        Math.floor(
+          Math.random() * events.length
+        )
+      ];
+
+    event();
+
+    setTimeout(
+      scheduleStrangeEvent,
+      5000 + Math.random() * 7000
+    );
+
+  }
+
+
+  // Give the phone a moment before
+  // anything strange starts happening.
+
+  setTimeout(function() {
+
+    home.classList.add(
+      "apps-compromised"
+    );
+
+    scheduleStrangeEvent();
+
+  }, 3500);
+
+})();
