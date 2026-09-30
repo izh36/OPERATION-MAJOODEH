@@ -1424,7 +1424,7 @@ function updateClearance(percent) {
 
 })();
 // =========================================
-// CREEPY "ARE YOU OKAY??" POPUP
+// RANDOM CREEPY POPUPS
 // =========================================
 
 (function startCreepyPopup() {
@@ -1432,13 +1432,49 @@ function updateClearance(percent) {
   const popup =
     document.getElementById("creepy-popup");
 
-  if (!popup) {
+  const home =
+    document.getElementById("home-view");
+
+  if (!popup || !home) {
     return;
   }
 
+  const messages = [
+    "are you okay bubu??",
+    "Let's play a game"
+  ];
+
   function showCreepyPopup() {
 
+    const message =
+      messages[
+        Math.floor(
+          Math.random() * messages.length
+        )
+      ];
+
+    popup.textContent = message;
+
+    /*
+      Keep the popup inside the home screen.
+      These values leave room around the edges
+      so it doesn't get clipped.
+    */
+
+    const x =
+      20 + Math.random() * 60;
+
+    const y =
+      48 + Math.random() * 35;
+
+    popup.style.left = x + "%";
+    popup.style.top = y + "%";
+
     popup.classList.remove("show");
+
+    /*
+      Force the animation to restart.
+    */
 
     void popup.offsetWidth;
 
@@ -1449,7 +1485,7 @@ function updateClearance(percent) {
   function schedulePopup() {
 
     const delay =
-      7000 + Math.random() * 10000;
+      6500 + Math.random() * 10000;
 
     setTimeout(function() {
 
