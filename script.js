@@ -1424,7 +1424,7 @@ function updateClearance(percent) {
 
 })();
 // =========================================
-// RANDOM CREEPY POPUPS
+// CREEPY POPUPS
 // =========================================
 
 function startCreepyPopups() {
@@ -1440,21 +1440,23 @@ function startCreepyPopups() {
   }
 
   const messages = [
+    "Let's play a game",
     "Are you okay BUBU??",
-    "Let's play a game"
+    "Miss me yet majoodeh?"
   ];
+
+  let messageIndex = 0;
 
   function showCreepyPopup() {
 
-    const randomMessage =
-      messages[
-        Math.floor(
-          Math.random() * messages.length
-        )
-      ];
-
     popup.textContent =
-      randomMessage;
+      messages[messageIndex];
+
+    messageIndex++;
+
+    if (messageIndex >= messages.length) {
+      messageIndex = 0;
+    }
 
     const randomX =
       25 + Math.random() * 50;
@@ -1480,38 +1482,19 @@ function startCreepyPopups() {
 
     }, 1250);
 
+    setTimeout(function() {
+
+      showCreepyPopup();
+
+    }, 4000 + Math.random() * 5000);
+
   }
 
-
-  /*
-    First popup.
-    This should appear 3 seconds
-    after the phone screen is available.
-  */
-
   setTimeout(function() {
-
     showCreepyPopup();
-
   }, 3000);
 
-
-  /*
-    Keep generating random popups.
-  */
-
-  setInterval(function() {
-
-    showCreepyPopup();
-
-  }, 7000 + Math.random() * 5000);
-
 }
-
-
-/*
-  Start once the page has loaded.
-*/
 
 if (document.readyState === "loading") {
 
