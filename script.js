@@ -263,6 +263,10 @@ document.getElementById("detail-back").addEventListener("click", function() {
 
 let detailBackView = "home-view";
 
+document.getElementById("detail-back").addEventListener("click", function() {
+  openView(detailBackView);
+});
+
 document.querySelectorAll(".message-item").forEach(function(item) {
 
  item.addEventListener("click", function() {
