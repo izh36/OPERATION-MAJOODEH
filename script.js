@@ -536,7 +536,7 @@ if (progress === 4) {
 
     completeObjective1();
 
-  }, 1750);
+  }, 2600);
 
 }
 }
