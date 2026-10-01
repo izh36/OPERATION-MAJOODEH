@@ -812,16 +812,36 @@ function completeObjective2() {
   document.getElementById("objective-3-status").textContent =
     "AVAILABLE";
 
-  showSystemNotification(
-    "OBJECTIVE #002 COMPLETE",
-    "OBJECTIVE #003 UNLOCKED"
+  const notification =
+    document.getElementById("system-notification");
+
+  const notificationTitle =
+    document.getElementById("notification-title");
+
+  const notificationMessage =
+    document.getElementById("notification-message");
+
+  notificationTitle.textContent =
+    "OBJECTIVE #002 COMPLETE";
+
+  notificationMessage.textContent =
+    "OBJECTIVE #003 UNLOCKED";
+
+  notification.classList.remove("show");
+
+  notification.classList.add(
+    "objective-complete-notification"
   );
 
   setTimeout(function() {
 
+    notification.classList.remove(
+      "objective-complete-notification"
+    );
+
     openView("objectives-view");
 
-  }, 1200);
+  }, 1750);
 
 }
 // ================================
