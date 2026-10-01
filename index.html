@@ -429,38 +429,77 @@
 </div>
 
 
-<!-- OBJECTIVE MASK -->
+<!-- CORRUPTED DIGITAL MASK -->
 <div class="objective-mask-wrap" aria-hidden="true">
 
   <div class="objective-mask">
 
-    <div class="mask-top">▓▒░ 010101 ░▒▓</div>
+    <div class="mask-header">
+      SUBJECT: M-001
+      <span>RENDER: FAILED</span>
+    </div>
+
+    <div class="mask-scanline scan-1"></div>
+    <div class="mask-scanline scan-2"></div>
 
     <div class="mask-face">
 
-      <div class="mask-eyes">
-        <span>0</span>
-        <span>0</span>
+      <!-- LEFT EYE -->
+      <div class="mask-eye mask-eye-left">
+        <span class="eye-shadow">░▒▓</span>
+        <span class="eye-core">0</span>
       </div>
 
+      <!-- RIGHT EYE -->
+      <div class="mask-eye mask-eye-right">
+        <span class="eye-shadow">▓▒░</span>
+        <span class="eye-core">0</span>
+      </div>
+
+      <!-- NOSE / SNOUT -->
       <div class="mask-snout">
-        <span>╲</span>
-        <strong>###</strong>
-        <span>╱</span>
+
+        <span class="snout-left">╲</span>
+
+        <div class="snout-center">
+          <span>▓###▓</span>
+          <small>01</small>
+        </div>
+
+        <span class="snout-right">╱</span>
+
       </div>
 
+      <!-- MOUTH -->
       <div class="mask-mouth">
-        &lt; 0101 / 1100 &gt;
+        <span>▓</span>
+        <span>0</span>
+        <span>1</span>
+        <span>▓</span>
+        <span>0</span>
+        <span>1</span>
+        <span>▓</span>
+      </div>
+
+      <!-- JAW CORRUPTION -->
+      <div class="mask-jaw">
+        ░▓██▓░
+        <span>ERR</span>
+        ░▓██▓░
       </div>
 
     </div>
 
-    <div class="mask-bottom">░▒▓ M-001 ▓▒░</div>
+    <div class="mask-corruption">
+      0101 ▓▒░ NULL ░▒▓ 1100
+    </div>
+
+    <div class="mask-footer">
+      FACE: RECOGNIZED
+      <span>█░█░█</span>
+    </div>
 
   </div>
-
-</div>
-
 
 </div>
 
