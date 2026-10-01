@@ -788,8 +788,8 @@ document.querySelectorAll(".connection-card").forEach(function(card) {
 
 function completeObjective2() {
 
-updateClearance(66);
-  
+  updateClearance(66);
+
   document.getElementById("objective-2-status").textContent =
     "COMPLETE";
 
@@ -821,13 +821,8 @@ updateClearance(66);
 
     openView("objectives-view");
 
-    setTimeout(function() {
-
-      openObjective(3);
-
-    }, 700);
-
   }, 1200);
+
 }
 // ================================
 // OBJECTIVE #003 — RECONSTRUCT
