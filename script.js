@@ -510,8 +510,8 @@ let progress = 0;
 
 function completeObjective1() {
 
-updateClearance(33);
-  
+  updateClearance(33);
+
   document.getElementById("objective-1-status").textContent =
     "COMPLETE";
 
@@ -539,13 +539,8 @@ updateClearance(33);
 
     openView("objectives-view");
 
-    setTimeout(function() {
-
-      openObjective(2);
-
-    }, 700);
-
   }, 1200);
+
 }
 
 function showSystemNotification(title, message) {
