@@ -1824,3 +1824,50 @@ const delay = isMobile
   });
 
 })();
+// =========================================
+// LOCKED FILE — CLASSIFIED MESSAGE
+// =========================================
+
+const mainFinalApp =
+  document.getElementById("main-final-app");
+
+const mainFinalStatus =
+  document.getElementById("main-final-status");
+
+if (mainFinalApp && mainFinalStatus) {
+
+  mainFinalApp.addEventListener("click", function(event) {
+
+    // Only show this while the file is still locked
+    if (
+      mainFinalApp.classList.contains("locked-app")
+    ) {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      mainFinalStatus.textContent =
+        "CLASSIFIED";
+
+      mainFinalStatus.classList.remove("show");
+
+      // Restart animation
+      void mainFinalStatus.offsetWidth;
+
+      mainFinalStatus.classList.add("show");
+
+      setTimeout(function() {
+
+        mainFinalStatus.classList.remove("show");
+
+        setTimeout(function() {
+          mainFinalStatus.textContent = "";
+        }, 150);
+
+      }, 1200);
+
+    }
+
+  });
+
+}
