@@ -1873,29 +1873,38 @@ button {
   position: relative;
 
   animation:
-    classifiedColor 0.5s steps(1) infinite,
-    classifiedGlitch 2.8s infinite;
+    classifiedColor 4.5s steps(1) infinite,
+    classifiedGlitch 5.5s infinite;
 
   text-shadow:
-    0 0 8px currentColor;
+    0 0 6px currentColor;
 }
 
 @keyframes classifiedColor {
 
-  0% {
+  0%,
+  72% {
     color: #ff304f;
   }
 
-  25% {
+  74% {
+    color: #b85b68;
+  }
+
+  76% {
+    color: #ff304f;
+  }
+
+  90% {
+    color: #ff304f;
+  }
+
+  92% {
     color: #8b5cff;
   }
 
-  50% {
-    color: #27e8ff;
-  }
-
-  75% {
-    color: #ff9f1c;
+  94% {
+    color: #ff304f;
   }
 
   100% {
