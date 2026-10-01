@@ -3534,7 +3534,7 @@ button {
   bottom: 50%;
   transform: translateX(-50%) translateY(50%);
   opacity: 0;
-  animation: objectiveCompleteFade 1.75s ease forwards;
+  animation: objectiveCompleteFade 2.6s ease forwards;
 }
 
 @keyframes objectiveCompleteFade {
