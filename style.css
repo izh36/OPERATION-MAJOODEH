@@ -3552,21 +3552,21 @@ button {
 
 }
 /* =========================================
-   SUBJECT — CROSSED OUT
+   MAJOODEH — CROSSED OUT
 ========================================= */
 
-#classified-screen .file-info > div:nth-child(2) {
+#classified-screen .file-info > div:nth-child(2) strong {
   position: relative;
+  display: inline-block;
 }
 
-#classified-screen .file-info > div:nth-child(2)::after {
+#classified-screen .file-info > div:nth-child(2) strong::after {
   content: "";
 
   position: absolute;
 
-  left: 8px;
-  right: 8px;
-
+  left: -2px;
+  right: -2px;
   top: 50%;
 
   height: 2px;
