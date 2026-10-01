@@ -503,7 +503,7 @@ let progress = 0;
   document.getElementById("objective-progress").textContent =
     progress + " / 4 MARKERS RECOVERED";
 
- if (progress === 4) {
+if (progress === 4) {
 
   const notification =
     document.getElementById("system-notification");
@@ -520,7 +520,13 @@ let progress = 0;
   notificationMessage.textContent =
     "OBJECTIVE #002 UNLOCKED";
 
-  notification.classList.add("objective-complete-notification");
+  notification.classList.remove(
+    "show"
+  );
+
+  notification.classList.add(
+    "objective-complete-notification"
+  );
 
   setTimeout(function() {
 
@@ -530,7 +536,7 @@ let progress = 0;
 
     completeObjective1();
 
-  }, 3000);
+  }, 1750);
 
 }
 }
