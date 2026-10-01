@@ -1091,8 +1091,8 @@ function animateTimelineCompletion() {
 
 function completeObjective3() {
 
-updateClearance(100);
-  
+  updateClearance(100);
+
   document.getElementById("objective-3-status").textContent =
     "COMPLETE";
 
@@ -1104,45 +1104,73 @@ updateClearance(100);
     "objective-complete"
   );
 
-  showSystemNotification(
-    "OBJECTIVE #003 COMPLETE",
-    "CLEARANCE: 100%"
+  const notification =
+    document.getElementById("system-notification");
+
+  const notificationTitle =
+    document.getElementById("notification-title");
+
+  const notificationMessage =
+    document.getElementById("notification-message");
+
+  notificationTitle.textContent =
+    "OBJECTIVE #003 COMPLETE";
+
+  notificationMessage.textContent =
+    "CLEARANCE: 100%";
+
+  notification.classList.remove("show");
+
+  notification.classList.add(
+    "objective-complete-notification"
   );
 
   setTimeout(function() {
 
-    showSystemNotification(
-      "FINAL FILE UNLOCKED",
-      "CASE #999 DECLASSIFIED"
+    notification.classList.remove(
+      "objective-complete-notification"
     );
 
-  }, 2200);
+    notificationTitle.textContent =
+      "FINAL FILE UNLOCKED";
 
-  setTimeout(function() {
+    notificationMessage.textContent =
+      "CASE #999 DECLASSIFIED";
 
-    document.getElementById("final-case-title").textContent =
-      "🔓 CASE #999";
+    notification.classList.add(
+      "objective-complete-notification"
+    );
 
-    document.getElementById("final-case-status").textContent =
-      "STATUS: DECLASSIFIED";
+    setTimeout(function() {
 
+      notification.classList.remove(
+        "objective-complete-notification"
+      );
 
-document.getElementById("main-final-app").classList.remove(
-  "locked-app"
-);
+      document.getElementById("final-case-title").textContent =
+        "🔓 CASE #999";
 
-document.getElementById("main-final-icon").textContent =
-  "🔓";
+      document.getElementById("final-case-status").textContent =
+        "STATUS: DECLASSIFIED";
 
-document.getElementById("main-final-label").textContent =
-  "CASE #999";
+      document.getElementById("main-final-app").classList.remove(
+        "locked-app"
+      );
 
-document.getElementById("main-final-status").textContent =
-  "DECLASSIFIED";
-    
-    openView("final-view");
+      document.getElementById("main-final-icon").textContent =
+        "🔓";
 
-  }, 4200);
+      document.getElementById("main-final-label").textContent =
+        "CASE #999";
+
+      document.getElementById("main-final-status").textContent =
+        "DECLASSIFIED";
+
+      openView("final-view");
+
+    }, 1750);
+
+  }, 1750);
 
 }
 
