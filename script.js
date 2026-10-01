@@ -503,9 +503,36 @@ let progress = 0;
   document.getElementById("objective-progress").textContent =
     progress + " / 4 MARKERS RECOVERED";
 
-  if (progress === 4) {
+ if (progress === 4) {
+
+  const notification =
+    document.getElementById("system-notification");
+
+  const notificationTitle =
+    document.getElementById("notification-title");
+
+  const notificationMessage =
+    document.getElementById("notification-message");
+
+  notificationTitle.textContent =
+    "OBJECTIVE #001 COMPLETE";
+
+  notificationMessage.textContent =
+    "OBJECTIVE #002 UNLOCKED";
+
+  notification.classList.add("objective-complete-notification");
+
+  setTimeout(function() {
+
+    notification.classList.remove(
+      "objective-complete-notification"
+    );
+
     completeObjective1();
-  }
+
+  }, 3000);
+
+}
 }
 
 function completeObjective1() {
