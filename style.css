@@ -3551,3 +3551,77 @@ button {
   }
 
 }
+/* =========================================
+   SUBJECT — CLASSIFIED REDACTION LINE
+========================================= */
+
+#classified-screen .file-info > div:nth-child(2) {
+  position: relative;
+}
+
+#classified-screen .file-info > div:nth-child(2)::after {
+  content: "";
+
+  position: absolute;
+
+  left: 6px;
+  right: 6px;
+
+  top: 50%;
+
+  height: 2px;
+
+  background: rgba(255, 48, 79, 0.9);
+
+  box-shadow:
+    0 0 6px rgba(255, 48, 79, 0.45);
+
+  transform:
+    translateY(-50%)
+    scaleX(0);
+
+  transform-origin: center;
+
+  animation:
+    subjectRedaction 4.2s steps(2) infinite;
+}
+
+@keyframes subjectRedaction {
+
+  0%,
+  54% {
+    opacity: 0;
+    transform:
+      translateY(-50%)
+      scaleX(0);
+  }
+
+  57% {
+    opacity: 1;
+    transform:
+      translateY(-50%)
+      scaleX(1);
+  }
+
+  64% {
+    opacity: 0.85;
+    transform:
+      translateY(-50%)
+      scaleX(1);
+  }
+
+  67% {
+    opacity: 0;
+    transform:
+      translateY(-50%)
+      scaleX(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translateY(-50%)
+      scaleX(0);
+  }
+
+}
