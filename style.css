@@ -3063,3 +3063,63 @@ button {
   }
 
 }
+/* =========================================
+   LOCKED FILE — CLASSIFIED MESSAGE
+========================================= */
+
+#main-final-status {
+  display: block;
+
+  margin-top: 3px;
+
+  min-height: 12px;
+
+  font-family: "Courier New", monospace;
+
+  font-size: 7px;
+
+  letter-spacing: 1.5px;
+
+  color: #87948a;
+
+  opacity: 0;
+
+  transition: opacity 0.15s ease;
+
+  pointer-events: none;
+}
+
+#main-final-status.show {
+  opacity: 1;
+
+  animation: classifiedGlitch 0.75s steps(2) forwards;
+}
+
+@keyframes classifiedGlitch {
+
+  0% {
+    opacity: 0;
+    transform: translateX(-2px);
+  }
+
+  15% {
+    opacity: 1;
+    transform: translateX(2px);
+  }
+
+  30% {
+    opacity: 0.35;
+    transform: translateX(-1px);
+  }
+
+  45% {
+    opacity: 1;
+    transform: translateX(1px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+}
