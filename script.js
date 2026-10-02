@@ -1942,3 +1942,64 @@ if (mainFinalApp && mainFinalStatus) {
   });
 
 }
+// ================================
+// OBJECTIVES — CLASSIFIED WARNING
+// ================================
+
+const objectivesApp =
+  document.getElementById("objectives-app");
+
+if (objectivesApp) {
+
+  objectivesApp.addEventListener("click", function() {
+
+    if (
+      document.getElementById("phone-screen") &&
+      document.getElementById("phone-screen").classList.contains("active")
+    ) {
+
+      const notification =
+        document.getElementById("system-notification");
+
+      const notificationTitle =
+        document.getElementById("notification-title");
+
+      const notificationMessage =
+        document.getElementById("notification-message");
+
+      if (!notification) return;
+
+      // Small delay before the terminal reacts
+      setTimeout(function() {
+
+        notificationTitle.textContent =
+          "⚠ CLASSIFIED INSTRUCTION";
+
+        notificationMessage.textContent =
+          "READ MESSAGES, MEMORIES, OBJECTS & PLANS THOROUGHLY. PAY ATTENTION TO EVERYTHING.";
+
+        notification.classList.remove("show");
+        notification.classList.remove(
+          "objective-complete-notification"
+        );
+
+        // Restart animation cleanly
+        void notification.offsetWidth;
+
+        notification.classList.add("classified-warning");
+
+        setTimeout(function() {
+
+          notification.classList.remove(
+            "classified-warning"
+          );
+
+        }, 5000);
+
+      }, 700);
+
+    }
+
+  });
+
+}
