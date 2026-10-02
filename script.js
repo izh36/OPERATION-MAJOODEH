@@ -236,6 +236,60 @@ function openView(viewId) {
   });
 
   document.getElementById(viewId).classList.add("active");
+
+    // ================================
+  // OBJECTIVES — CLASSIFIED WARNING
+  // ================================
+
+  if (
+    viewId === "objectives-view" &&
+    !objective1Completed
+  ) {
+
+    setTimeout(function() {
+
+      const notification =
+        document.getElementById("system-notification");
+
+      const notificationTitle =
+        document.getElementById("notification-title");
+
+      const notificationMessage =
+        document.getElementById("notification-message");
+
+      if (!notification) return;
+
+      notificationTitle.textContent =
+        "⚠ CLASSIFIED INSTRUCTION";
+
+      notificationMessage.textContent =
+        "READ MESSAGES, MEMORIES, OBJECTS & PLANS THOROUGHLY. PAY ATTENTION TO EVERYTHING.";
+
+      notification.classList.remove("show");
+      notification.classList.remove(
+        "objective-complete-notification"
+      );
+      notification.classList.remove(
+        "classified-warning"
+      );
+
+      void notification.offsetWidth;
+
+      notification.classList.add(
+        "classified-warning"
+      );
+
+      setTimeout(function() {
+
+        notification.classList.remove(
+          "classified-warning"
+        );
+
+      }, 5000);
+
+    }, 700);
+
+  }
 }
 
 
@@ -431,6 +485,7 @@ function showSystemAlert(title, message) {
 // ================================
 
 let objective1Active = false;
+let objective1Completed = false;
 
 let objective1Clues = {
   nails: false,
@@ -542,6 +597,8 @@ if (progress === 4) {
 }
 
 function completeObjective1() {
+
+  objective1Completed = true;
 
   updateClearance(33);
 
@@ -1942,64 +1999,4 @@ if (mainFinalApp && mainFinalStatus) {
   });
 
 }
-// ================================
-// OBJECTIVES — CLASSIFIED WARNING
-// ================================
 
-const objectivesApp =
-  document.getElementById("objectives-app");
-
-if (objectivesApp) {
-
-  objectivesApp.addEventListener("click", function() {
-
-    if (
-      document.getElementById("phone-screen") &&
-      document.getElementById("phone-screen").classList.contains("active")
-    ) {
-
-      const notification =
-        document.getElementById("system-notification");
-
-      const notificationTitle =
-        document.getElementById("notification-title");
-
-      const notificationMessage =
-        document.getElementById("notification-message");
-
-      if (!notification) return;
-
-      // Small delay before the terminal reacts
-      setTimeout(function() {
-
-        notificationTitle.textContent =
-          "⚠ CLASSIFIED INSTRUCTION";
-
-        notificationMessage.textContent =
-          "READ MESSAGES, MEMORIES, OBJECTS & PLANS THOROUGHLY. PAY ATTENTION TO EVERYTHING.";
-
-        notification.classList.remove("show");
-        notification.classList.remove(
-          "objective-complete-notification"
-        );
-
-        // Restart animation cleanly
-        void notification.offsetWidth;
-
-        notification.classList.add("classified-warning");
-
-        setTimeout(function() {
-
-          notification.classList.remove(
-            "classified-warning"
-          );
-
-        }, 5000);
-
-      }, 700);
-
-    }
-
-  });
-
-}
