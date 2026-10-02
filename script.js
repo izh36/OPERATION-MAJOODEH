@@ -67,7 +67,7 @@ const messages = {
   },
   4: {
     title: "#004 HUNGARY",
-    content: "arriving Hungary and directly becoming friends."
+    content: "Arriving Hungary and directly becoming friends."
   }
 };
 
@@ -82,7 +82,7 @@ const memories = {
   },
   3: {
     title: "MEMORY #003",
-    content: "Going for new years walk and talking pics in front of the minion and telephone booth."
+    content: "Going for new years walk and taking pics in front of the minion and telephone booth."
   },
   4: {
     title: "MEMORY #004",
