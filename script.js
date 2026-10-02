@@ -507,16 +507,23 @@ function activateObjective1() {
   document.getElementById("objective-1-status").textContent =
     "ACTIVE";
 
- document.getElementById("clue-yoda").style.display = "inline-block";
-document.getElementById("clue-yoda").classList.add("clue-deployed");
+  document.getElementById("clue-yoda").style.display = "inline-block";
+  document.getElementById("clue-yoda").classList.add("clue-deployed");
 
-document.getElementById("clue-sunrise").style.display = "inline-block";
-document.getElementById("clue-sunrise").classList.add("clue-deployed");
+  document.getElementById("clue-sunrise").style.display = "inline-block";
+  document.getElementById("clue-sunrise").classList.add("clue-deployed");
 
   showSystemNotification(
     "OBJECTIVE #001 ACTIVE",
     "4 AUTHENTICATION MARKERS DEPLOYED"
   );
+
+  setTimeout(function() {
+
+    openView("home-view");
+
+  }, 1000);
+
 }
 
 function collectClue(type) {
