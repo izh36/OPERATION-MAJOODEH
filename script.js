@@ -488,6 +488,7 @@ let objective1Active = false;
 let objective1Completed = false;
 
 let objective1Clues = {
+  
   nails: false,
   cat: false,
   yoda: false,
@@ -1108,11 +1109,17 @@ function animateTimelineCompletion() {
       puzzle.querySelectorAll(".timeline-card")
     );
 
+  // Remember where every card currently is
+  const firstPositions = new Map();
+
   cards.forEach(function(card) {
 
-    card.classList.add(
-      "timeline-rearranging"
-    );
+    const rect = card.getBoundingClientRect();
+
+    firstPositions.set(card, {
+      left: rect.left,
+      top: rect.top
+    });
 
   });
 
@@ -1121,23 +1128,76 @@ function animateTimelineCompletion() {
     "REORDERING CHRONOLOGICALLY"
   );
 
+  // Sort cards into their correct chronological order
+  cards.sort(function(a, b) {
+
+    return Number(a.dataset.order) -
+      Number(b.dataset.order);
+
+  });
+
+  cards.forEach(function(card) {
+    puzzle.appendChild(card);
+  });
+
+  // Find where each card ended up
+  cards.forEach(function(card) {
+
+    const first = firstPositions.get(card);
+    const last = card.getBoundingClientRect();
+
+    const moveX =
+      first.left - last.left;
+
+    const moveY =
+      first.top - last.top;
+
+    // Start the card at its OLD position
+    card.style.transition = "none";
+
+    card.style.transform =
+      "translate(" +
+      moveX +
+      "px, " +
+      moveY +
+      "px)";
+
+    card.classList.add(
+      "timeline-rearranging"
+    );
+
+  });
+
+  // Force browser to register the starting positions
+  void puzzle.offsetHeight;
+
+  // Animate every card into its new position
+  cards.forEach(function(card, index) {
+
+    setTimeout(function() {
+
+      card.style.transition =
+        "transform 900ms cubic-bezier(0.22, 1, 0.36, 1)";
+
+      card.style.transform =
+        "translate(0, 0)";
+
+    }, index * 120);
+
+  });
+
+  // Wait for the movement to finish
   setTimeout(function() {
 
-    cards.sort(function(a, b) {
-
-      return Number(a.dataset.order) -
-        Number(b.dataset.order);
-
-    });
-
     cards.forEach(function(card) {
-      puzzle.appendChild(card);
-    });
 
-    cards.forEach(function(card) {
+      card.style.transition = "";
+      card.style.transform = "";
+
       card.classList.remove(
         "timeline-rearranging"
       );
+
     });
 
     document.getElementById("objective-3-progress").textContent =
@@ -1149,7 +1209,7 @@ function animateTimelineCompletion() {
 
     }, 900);
 
-  }, 1400);
+  }, 900 + (cards.length * 120) + 500);
 
 }
 
