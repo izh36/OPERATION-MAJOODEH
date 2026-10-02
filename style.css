@@ -1488,31 +1488,11 @@ button {
 }
 
 .timeline-card.timeline-rearranging {
-  animation: timelineRearrange 0.8s ease-in-out;
-}
-
-@keyframes timelineRearrange {
-
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  30% {
-    transform: scale(1.05);
-    opacity: 0.75;
-  }
-
-  60% {
-    transform: scale(0.96);
-    opacity: 0.85;
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-
+  z-index: 10;
+  position: relative;
+  will-change: transform;
+  box-shadow:
+    0 0 18px rgba(255,255,255,0.08);
 }
 /* =========================================
    CLASSIFIED OPENING — DEEP SYSTEM MODE
