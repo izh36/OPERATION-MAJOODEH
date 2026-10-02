@@ -3588,3 +3588,98 @@ button {
 
   pointer-events: none;
 }
+/* =========================================
+   CLASSIFIED OBJECTIVES WARNING
+========================================= */
+
+.system-notification.classified-warning {
+  bottom: 50%;
+
+  transform:
+    translateX(-50%)
+    translateY(50%);
+
+  opacity: 0;
+
+  animation:
+    classifiedWarning 5s ease forwards;
+
+  border-color: rgba(255, 48, 79, 0.55);
+
+  box-shadow:
+    0 0 10px rgba(255, 48, 79, 0.15),
+    inset 0 0 12px rgba(255, 48, 79, 0.04);
+}
+
+.system-notification.classified-warning
+#notification-title {
+  color: #ff304f;
+
+  letter-spacing: 2px;
+
+  text-shadow:
+    0 0 6px rgba(255, 48, 79, 0.5);
+}
+
+.system-notification.classified-warning
+#notification-message {
+  color: #c9d1c9;
+
+  letter-spacing: 1px;
+}
+
+
+@keyframes classifiedWarning {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateX(-50%)
+      translateY(50%)
+      scale(0.96);
+  }
+
+  8% {
+    opacity: 1;
+
+    transform:
+      translateX(-50%)
+      translateY(50%)
+      scale(1);
+  }
+
+  11% {
+    transform:
+      translateX(-50%)
+      translateY(50%)
+      translateX(-2px);
+  }
+
+  13% {
+    transform:
+      translateX(-50%)
+      translateY(50%)
+      translateX(2px);
+  }
+
+  15% {
+    transform:
+      translateX(-50%)
+      translateY(50%);
+  }
+
+  72% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translateX(-50%)
+      translateY(50%)
+      scale(0.98);
+  }
+
+}
